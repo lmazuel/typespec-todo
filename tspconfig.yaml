@@ -1,2 +1,9 @@
 emit:
-  - "@typespec/openapi3"
+  #- "@typespec/openapi3"
+  - "@azure-tools/typespec-python"
+options:
+  "@azure-tools/typespec-python":
+    package-pprint-name: "Brian Fun Service"
+    package-dir: "brian-fun-service"
+    package-name: "{package-dir}"
+    unbranded: true

@@ -1,0 +1,7 @@
+include *.md
+include LICENSE
+include brian/fun/service/py.typed
+recursive-include tests *.py
+recursive-include samples *.py *.md
+include brian/__init__.py
+include brian/fun/__init__.py

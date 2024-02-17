@@ -21,7 +21,7 @@ model User {
   username: string;
 
   /** The user's email address */
-  @format("email")
+  //@format("email")
   email: string;
 
   /**
@@ -76,7 +76,7 @@ union TodoLabel {
 model TodoLabelRecord {
   name: string;
 
-  @format("^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$")
+  //@format("^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$")
   color?: string;
 }
 
