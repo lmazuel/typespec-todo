@@ -4,8 +4,8 @@ package com.brian.fun.service.models;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.generic.core.annotation.Fluent;
 import com.generic.core.annotation.Generated;
-import com.generic.core.annotation.Immutable;
 import com.generic.core.models.BinaryData;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * The TodoItem model.
  */
-@Immutable
+@Fluent
 public final class TodoItem {
     /*
      * The item's unique id
@@ -40,8 +40,8 @@ public final class TodoItem {
      * User that the todo is assigned to
      */
     @Generated
-    @JsonProperty(value = "ownedBy")
-    private long ownedBy;
+    @JsonProperty(value = "assignedTo")
+    private Long assignedTo;
 
     /*
      * A longer description of the todo item in markdown format
@@ -90,21 +90,16 @@ public final class TodoItem {
      * 
      * @param id the id value to set.
      * @param title the title value to set.
-     * @param ownedBy the ownedBy value to set.
-     * @param description the description value to set.
      * @param status the status value to set.
      * @param labels the labels value to set.
      */
     @Generated
     @JsonCreator
     public TodoItem(@JsonProperty(value = "id") long id, @JsonProperty(value = "title") String title,
-        @JsonProperty(value = "ownedBy") long ownedBy, @JsonProperty(value = "description") String description,
         @JsonProperty(value = "status") TodoItemStatus status,
         @JsonProperty(value = "labels") List<BinaryData> labels) {
         this.id = id;
         this.title = title;
-        this.ownedBy = ownedBy;
-        this.description = description;
         this.status = status;
         this.labels = labels;
     }
@@ -140,13 +135,25 @@ public final class TodoItem {
     }
 
     /**
-     * Get the ownedBy property: User that the todo is assigned to.
+     * Get the assignedTo property: User that the todo is assigned to.
      * 
-     * @return the ownedBy value.
+     * @return the assignedTo value.
      */
     @Generated
-    public long getOwnedBy() {
-        return this.ownedBy;
+    public Long getAssignedTo() {
+        return this.assignedTo;
+    }
+
+    /**
+     * Set the assignedTo property: User that the todo is assigned to.
+     * 
+     * @param assignedTo the assignedTo value to set.
+     * @return the TodoItem object itself.
+     */
+    @Generated
+    public TodoItem setAssignedTo(Long assignedTo) {
+        this.assignedTo = assignedTo;
+        return this;
     }
 
     /**
@@ -157,6 +164,18 @@ public final class TodoItem {
     @Generated
     public String getDescription() {
         return this.description;
+    }
+
+    /**
+     * Set the description property: A longer description of the todo item in markdown format.
+     * 
+     * @param description the description value to set.
+     * @return the TodoItem object itself.
+     */
+    @Generated
+    public TodoItem setDescription(String description) {
+        this.description = description;
+        return this;
     }
 
     /**

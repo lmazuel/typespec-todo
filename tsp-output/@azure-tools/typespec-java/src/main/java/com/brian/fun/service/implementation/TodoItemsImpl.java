@@ -110,7 +110,7 @@ public final class TodoItemsImpl {
             RequestOptions requestOptions, Context context);
 
         @Delete("/items/{id}")
-        @ExpectedResponses({ 200, 404 })
+        @ExpectedResponses({ 204, 404 })
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
@@ -130,8 +130,8 @@ public final class TodoItemsImpl {
      *             id: long (Required)
      *             title: String (Required)
      *             createdBy: long (Required)
-     *             ownedBy: long (Required)
-     *             description: String (Required)
+     *             assignedTo: Long (Optional)
+     *             description: String (Optional)
      *             status: String(NotStarted/InProgress/Completed) (Required)
      *             createdAt: OffsetDateTime (Required)
      *             updatedAt: OffsetDateTime (Required)
@@ -176,8 +176,8 @@ public final class TodoItemsImpl {
      *         id: long (Required)
      *         title: String (Required)
      *         createdBy: long (Required)
-     *         ownedBy: long (Required)
-     *         description: String (Required)
+     *         assignedTo: Long (Optional)
+     *         description: String (Optional)
      *         status: String(NotStarted/InProgress/Completed) (Required)
      *         createdAt: OffsetDateTime (Required)
      *         updatedAt: OffsetDateTime (Required)
@@ -187,10 +187,7 @@ public final class TodoItemsImpl {
      *         ]
      *     }
      *     attachments (Required): [
-     *          (Required){
-     *             description: String (Required)
-     *             url: String (Required)
-     *         }
+     *         BinaryData (Required)
      *     ]
      * }
      * }</pre>
@@ -202,8 +199,8 @@ public final class TodoItemsImpl {
      *     id: long (Required)
      *     title: String (Required)
      *     createdBy: long (Required)
-     *     ownedBy: long (Required)
-     *     description: String (Required)
+     *     assignedTo: Long (Optional)
+     *     description: String (Optional)
      *     status: String(NotStarted/InProgress/Completed) (Required)
      *     createdAt: OffsetDateTime (Required)
      *     updatedAt: OffsetDateTime (Required)
@@ -240,8 +237,8 @@ public final class TodoItemsImpl {
      *     id: long (Required)
      *     title: String (Required)
      *     createdBy: long (Required)
-     *     ownedBy: long (Required)
-     *     description: String (Required)
+     *     assignedTo: Long (Optional)
+     *     description: String (Optional)
      *     status: String(NotStarted/InProgress/Completed) (Required)
      *     createdAt: OffsetDateTime (Required)
      *     updatedAt: OffsetDateTime (Required)
@@ -278,8 +275,8 @@ public final class TodoItemsImpl {
      *     id: long (Required)
      *     title: String (Required)
      *     createdBy: long (Required)
-     *     ownedBy: long (Required)
-     *     description: String (Required)
+     *     assignedTo: Long (Optional)
+     *     description: String (Optional)
      *     status: String(NotStarted/InProgress/Completed) (Required)
      *     createdAt: OffsetDateTime (Required)
      *     updatedAt: OffsetDateTime (Required)
@@ -313,7 +310,7 @@ public final class TodoItemsImpl {
      * {
      *     patch (Required): {
      *         title: String (Optional)
-     *         ownedBy: Long (Optional)
+     *         assignedTo: Long (Optional)
      *         description: String (Optional)
      *         status: String(NotStarted/InProgress/Completed) (Optional)
      *     }
@@ -327,8 +324,8 @@ public final class TodoItemsImpl {
      *     id: long (Required)
      *     title: String (Required)
      *     createdBy: long (Required)
-     *     ownedBy: long (Required)
-     *     description: String (Required)
+     *     assignedTo: Long (Optional)
+     *     description: String (Optional)
      *     status: String(NotStarted/InProgress/Completed) (Required)
      *     createdAt: OffsetDateTime (Required)
      *     updatedAt: OffsetDateTime (Required)

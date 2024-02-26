@@ -3,11 +3,11 @@
 package com.brian.fun.service.implementation.models;
 
 import com.brian.fun.service.models.TodoItem;
-import com.brian.fun.service.models.TodoUrlAttachment;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.generic.core.annotation.Generated;
 import com.generic.core.annotation.Immutable;
+import com.generic.core.models.BinaryData;
 import java.util.List;
 
 /**
@@ -27,7 +27,7 @@ public final class CreateJsonRequest {
      */
     @Generated
     @JsonProperty(value = "attachments")
-    private List<TodoUrlAttachment> attachments;
+    private List<BinaryData> attachments;
 
     /**
      * Creates an instance of CreateJsonRequest class.
@@ -38,7 +38,7 @@ public final class CreateJsonRequest {
     @Generated
     @JsonCreator
     public CreateJsonRequest(@JsonProperty(value = "item") TodoItem item,
-        @JsonProperty(value = "attachments") List<TodoUrlAttachment> attachments) {
+        @JsonProperty(value = "attachments") List<BinaryData> attachments) {
         this.item = item;
         this.attachments = attachments;
     }
@@ -59,7 +59,7 @@ public final class CreateJsonRequest {
      * @return the attachments value.
      */
     @Generated
-    public List<TodoUrlAttachment> getAttachments() {
+    public List<BinaryData> getAttachments() {
         return this.attachments;
     }
 }

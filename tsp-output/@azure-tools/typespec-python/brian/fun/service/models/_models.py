@@ -20,8 +20,8 @@ if TYPE_CHECKING:
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 
-class Error(_model_base.Model):
-    """Error.
+class ApiError(_model_base.Model):
+    """ApiError.
 
     All required parameters must be populated in order to send to server.
 
@@ -56,7 +56,7 @@ class Error(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class InvalidTodoItem(Error):
+class InvalidTodoItem(ApiError):
     """InvalidTodoItem.
 
     All required parameters must be populated in order to send to server.
@@ -87,8 +87,70 @@ class InvalidTodoItem(Error):
         super().__init__(*args, **kwargs)
 
 
-class InvalidUserResponse(Error):
+class InvalidUserResponse(ApiError):
     """The user is invalid (e.g. forgot to enter email address).
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar code: A machine readable error code. Required.
+    :vartype code: str
+    :ivar message: A human readable message. Required.
+    :vartype message: str
+    """
+
+    @overload
+    def __init__(
+        self,
+        *,
+        code: str,
+        message: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class Standard4XXResponse(ApiError):
+    """Something is wrong with you.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar code: A machine readable error code. Required.
+    :vartype code: str
+    :ivar message: A human readable message. Required.
+    :vartype message: str
+    """
+
+    @overload
+    def __init__(
+        self,
+        *,
+        code: str,
+        message: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class Standard5XXResponse(ApiError):
+    """Something is wrong with me.
 
     All required parameters must be populated in order to send to server.
 
@@ -121,6 +183,8 @@ class InvalidUserResponse(Error):
 class TodoFileAttachment(_model_base.Model):
     """TodoFileAttachment.
 
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
+
     All required parameters must be populated in order to send to server.
 
     :ivar todo_item_id: The todo item this is attached to. Required.
@@ -131,25 +195,28 @@ class TodoFileAttachment(_model_base.Model):
     :vartype media_type: str
     :ivar url: The url where the attachment can be downloaded from. Required.
     :vartype url: str
+    :ivar contents: The contents of the file. Required.
+    :vartype contents: bytes
     """
 
-    todo_item_id: int = rest_field(name="todoItemId")
+    todo_item_id: int = rest_field(name="todoItemId", visibility=["read"])
     """The todo item this is attached to. Required."""
     filename: str = rest_field()
     """The file name of the attachment. Required."""
     media_type: str = rest_field(name="mediaType")
     """The media type of the attachment. Required."""
-    url: str = rest_field()
+    url: str = rest_field(visibility=["read"])
     """The url where the attachment can be downloaded from. Required."""
+    contents: bytes = rest_field(visibility=["create"], format="base64")
+    """The contents of the file. Required."""
 
     @overload
     def __init__(
         self,
         *,
-        todo_item_id: int,
         filename: str,
         media_type: str,
-        url: str,
+        contents: bytes,
     ):
         ...
 
@@ -177,9 +244,9 @@ class TodoItem(_model_base.Model):
     :vartype title: str
     :ivar created_by: User that created the todo. Required.
     :vartype created_by: int
-    :ivar owned_by: User that the todo is assigned to. Required.
-    :vartype owned_by: int
-    :ivar description: A longer description of the todo item in markdown format. Required.
+    :ivar assigned_to: User that the todo is assigned to.
+    :vartype assigned_to: int
+    :ivar description: A longer description of the todo item in markdown format.
     :vartype description: str
     :ivar status: The status of the todo item. Required. Is one of the following types:
      Literal["NotStarted"], Literal["InProgress"], Literal["Completed"]
@@ -201,10 +268,10 @@ class TodoItem(_model_base.Model):
     """The item's title. Required."""
     created_by: int = rest_field(name="createdBy", visibility=["read"])
     """User that created the todo. Required."""
-    owned_by: int = rest_field(name="ownedBy")
-    """User that the todo is assigned to. Required."""
-    description: str = rest_field()
-    """A longer description of the todo item in markdown format. Required."""
+    assigned_to: Optional[int] = rest_field(name="assignedTo")
+    """User that the todo is assigned to."""
+    description: Optional[str] = rest_field()
+    """A longer description of the todo item in markdown format."""
     status: Literal["NotStarted", "InProgress", "Completed"] = rest_field()
     """The status of the todo item. Required. Is one of the following types: Literal[\"NotStarted\"],
      Literal[\"InProgress\"], Literal[\"Completed\"]"""
@@ -223,10 +290,10 @@ class TodoItem(_model_base.Model):
         *,
         id: int,  # pylint: disable=redefined-builtin
         title: str,
-        owned_by: int,
-        description: str,
         status: Literal["NotStarted", "InProgress", "Completed"],
         labels: List["_types.TodoLabel"],
+        assigned_to: Optional[int] = None,
+        description: Optional[str] = None,
     ):
         ...
 
@@ -246,8 +313,8 @@ class TodoItemPatch(_model_base.Model):
 
     :ivar title: The item's title.
     :vartype title: str
-    :ivar owned_by: User that the todo is assigned to.
-    :vartype owned_by: int
+    :ivar assigned_to: User that the todo is assigned to.
+    :vartype assigned_to: int
     :ivar description: A longer description of the todo item in markdown format.
     :vartype description: str
     :ivar status: The status of the todo item. Is one of the following types:
@@ -257,7 +324,7 @@ class TodoItemPatch(_model_base.Model):
 
     title: Optional[str] = rest_field()
     """The item's title."""
-    owned_by: Optional[int] = rest_field(name="ownedBy")
+    assigned_to: Optional[int] = rest_field(name="assignedTo")
     """User that the todo is assigned to."""
     description: Optional[str] = rest_field()
     """A longer description of the todo item in markdown format."""
@@ -270,7 +337,7 @@ class TodoItemPatch(_model_base.Model):
         self,
         *,
         title: Optional[str] = None,
-        owned_by: Optional[int] = None,
+        assigned_to: Optional[int] = None,
         description: Optional[str] = None,
         status: Optional[Literal["NotStarted", "InProgress", "Completed"]] = None,
     ):
@@ -543,7 +610,7 @@ class UserCreatedResponse(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class UserExistsResponse(Error):
+class UserExistsResponse(ApiError):
     """The user already exists.
 
     All required parameters must be populated in order to send to server.

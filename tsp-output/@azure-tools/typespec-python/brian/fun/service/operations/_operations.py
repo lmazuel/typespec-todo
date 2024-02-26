@@ -302,7 +302,13 @@ class UsersOperations:
     @overload
     def create(
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> Union[_models.UserCreatedResponse, _models.UserExistsResponse, _models.InvalidUserResponse]:
+    ) -> Union[
+        _models.UserCreatedResponse,
+        _models.UserExistsResponse,
+        _models.InvalidUserResponse,
+        _models.Standard4XXResponse,
+        _models.Standard5XXResponse,
+    ]:
         # pylint: disable=line-too-long
         """create.
 
@@ -311,10 +317,13 @@ class UsersOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: UserCreatedResponse or UserExistsResponse or InvalidUserResponse. The
-         UserCreatedResponse is compatible with MutableMapping
+        :return: UserCreatedResponse or UserExistsResponse or InvalidUserResponse or
+         Standard4XXResponse or Standard5XXResponse. The UserCreatedResponse is compatible with
+         MutableMapping
         :rtype: ~brian.fun.service.models.UserCreatedResponse or
          ~brian.fun.service.models.UserExistsResponse or ~brian.fun.service.models.InvalidUserResponse
+         or ~brian.fun.service.models.Standard4XXResponse or
+         ~brian.fun.service.models.Standard5XXResponse
         :raises ~corehttp.exceptions.HttpResponseError:
 
         Example:
@@ -341,7 +350,7 @@ class UsersOperations:
                       url. Required.
                     "username": "str"  # The user's username. Required.
                 }
-                # response body for status code(s): 409, 422
+                # response body for status code(s): 409, 422, 400, 500
                 response == {
                     "code": "str",  # A machine readable error code. Required.
                     "message": "str"  # A human readable message. Required.
@@ -351,7 +360,13 @@ class UsersOperations:
     @overload
     def create(
         self, *, user: _models.User, content_type: str = "application/json", **kwargs: Any
-    ) -> Union[_models.UserCreatedResponse, _models.UserExistsResponse, _models.InvalidUserResponse]:
+    ) -> Union[
+        _models.UserCreatedResponse,
+        _models.UserExistsResponse,
+        _models.InvalidUserResponse,
+        _models.Standard4XXResponse,
+        _models.Standard5XXResponse,
+    ]:
         # pylint: disable=line-too-long
         """create.
 
@@ -360,10 +375,13 @@ class UsersOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: UserCreatedResponse or UserExistsResponse or InvalidUserResponse. The
-         UserCreatedResponse is compatible with MutableMapping
+        :return: UserCreatedResponse or UserExistsResponse or InvalidUserResponse or
+         Standard4XXResponse or Standard5XXResponse. The UserCreatedResponse is compatible with
+         MutableMapping
         :rtype: ~brian.fun.service.models.UserCreatedResponse or
          ~brian.fun.service.models.UserExistsResponse or ~brian.fun.service.models.InvalidUserResponse
+         or ~brian.fun.service.models.Standard4XXResponse or
+         ~brian.fun.service.models.Standard5XXResponse
         :raises ~corehttp.exceptions.HttpResponseError:
 
         Example:
@@ -379,7 +397,7 @@ class UsersOperations:
                       url. Required.
                     "username": "str"  # The user's username. Required.
                 }
-                # response body for status code(s): 409, 422
+                # response body for status code(s): 409, 422, 400, 500
                 response == {
                     "code": "str",  # A machine readable error code. Required.
                     "message": "str"  # A human readable message. Required.
@@ -389,7 +407,13 @@ class UsersOperations:
     @overload
     def create(
         self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> Union[_models.UserCreatedResponse, _models.UserExistsResponse, _models.InvalidUserResponse]:
+    ) -> Union[
+        _models.UserCreatedResponse,
+        _models.UserExistsResponse,
+        _models.InvalidUserResponse,
+        _models.Standard4XXResponse,
+        _models.Standard5XXResponse,
+    ]:
         # pylint: disable=line-too-long
         """create.
 
@@ -398,10 +422,13 @@ class UsersOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: UserCreatedResponse or UserExistsResponse or InvalidUserResponse. The
-         UserCreatedResponse is compatible with MutableMapping
+        :return: UserCreatedResponse or UserExistsResponse or InvalidUserResponse or
+         Standard4XXResponse or Standard5XXResponse. The UserCreatedResponse is compatible with
+         MutableMapping
         :rtype: ~brian.fun.service.models.UserCreatedResponse or
          ~brian.fun.service.models.UserExistsResponse or ~brian.fun.service.models.InvalidUserResponse
+         or ~brian.fun.service.models.Standard4XXResponse or
+         ~brian.fun.service.models.Standard5XXResponse
         :raises ~corehttp.exceptions.HttpResponseError:
 
         Example:
@@ -417,7 +444,7 @@ class UsersOperations:
                       url. Required.
                     "username": "str"  # The user's username. Required.
                 }
-                # response body for status code(s): 409, 422
+                # response body for status code(s): 409, 422, 400, 500
                 response == {
                     "code": "str",  # A machine readable error code. Required.
                     "message": "str"  # A human readable message. Required.
@@ -426,7 +453,13 @@ class UsersOperations:
 
     def create(
         self, body: Union[JSON, IO[bytes]] = _Unset, *, user: _models.User = _Unset, **kwargs: Any
-    ) -> Union[_models.UserCreatedResponse, _models.UserExistsResponse, _models.InvalidUserResponse]:
+    ) -> Union[
+        _models.UserCreatedResponse,
+        _models.UserExistsResponse,
+        _models.InvalidUserResponse,
+        _models.Standard4XXResponse,
+        _models.Standard5XXResponse,
+    ]:
         # pylint: disable=line-too-long
         """create.
 
@@ -434,10 +467,13 @@ class UsersOperations:
         :type body: JSON or IO[bytes]
         :keyword user: Required.
         :paramtype user: ~brian.fun.service.models.User
-        :return: UserCreatedResponse or UserExistsResponse or InvalidUserResponse. The
-         UserCreatedResponse is compatible with MutableMapping
+        :return: UserCreatedResponse or UserExistsResponse or InvalidUserResponse or
+         Standard4XXResponse or Standard5XXResponse. The UserCreatedResponse is compatible with
+         MutableMapping
         :rtype: ~brian.fun.service.models.UserCreatedResponse or
          ~brian.fun.service.models.UserExistsResponse or ~brian.fun.service.models.InvalidUserResponse
+         or ~brian.fun.service.models.Standard4XXResponse or
+         ~brian.fun.service.models.Standard5XXResponse
         :raises ~corehttp.exceptions.HttpResponseError:
 
         Example:
@@ -464,7 +500,7 @@ class UsersOperations:
                       url. Required.
                     "username": "str"  # The user's username. Required.
                 }
-                # response body for status code(s): 409, 422
+                # response body for status code(s): 409, 422, 400, 500
                 response == {
                     "code": "str",  # A machine readable error code. Required.
                     "message": "str"  # A human readable message. Required.
@@ -483,7 +519,13 @@ class UsersOperations:
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[
-            Union[_models.UserCreatedResponse, _models.UserExistsResponse, _models.InvalidUserResponse]
+            Union[
+                _models.UserCreatedResponse,
+                _models.UserExistsResponse,
+                _models.InvalidUserResponse,
+                _models.Standard4XXResponse,
+                _models.Standard5XXResponse,
+            ]
         ] = kwargs.pop("cls", None)
 
         if body is _Unset:
@@ -513,7 +555,7 @@ class UsersOperations:
 
         response = pipeline_response.http_response
 
-        if response.status_code not in [200, 409, 422]:
+        if response.status_code not in [200, 400, 409, 422, 500]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
@@ -524,6 +566,12 @@ class UsersOperations:
                 deserialized = response.iter_bytes()
             else:
                 deserialized = _deserialize(_models.UserCreatedResponse, response.json())
+
+        if response.status_code == 400:
+            if _stream:
+                deserialized = response.iter_bytes()
+            else:
+                deserialized = _deserialize(_models.Standard4XXResponse, response.json())
 
         if response.status_code == 409:
             if _stream:
@@ -537,24 +585,35 @@ class UsersOperations:
             else:
                 deserialized = _deserialize(_models.InvalidUserResponse, response.json())
 
+        if response.status_code == 500:
+            if _stream:
+                deserialized = response.iter_bytes()
+            else:
+                deserialized = _deserialize(_models.Standard5XXResponse, response.json())
+
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
 
         return deserialized  # type: ignore
 
-    def validate(self, *, token: str, **kwargs: Any) -> Optional[_models.InvalidUserResponse]:
+    def validate(
+        self, *, token: str, **kwargs: Any
+    ) -> Union[_models.InvalidUserResponse, _models.Standard4XXResponse, _models.Standard5XXResponse]:
         """validate.
 
         :keyword token: Required.
         :paramtype token: str
-        :return: InvalidUserResponse or None. The InvalidUserResponse is compatible with MutableMapping
-        :rtype: ~brian.fun.service.models.InvalidUserResponse or None
+        :return: InvalidUserResponse or Standard4XXResponse or Standard5XXResponse or None. The
+         InvalidUserResponse is compatible with MutableMapping
+        :rtype: ~brian.fun.service.models.InvalidUserResponse or
+         ~brian.fun.service.models.Standard4XXResponse or ~brian.fun.service.models.Standard5XXResponse
+         or None
         :raises ~corehttp.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
-                # response body for status code(s): 422
+                # response body for status code(s): 422, 400, 500
                 response == {
                     "code": "str",  # A machine readable error code. Required.
                     "message": "str"  # A human readable message. Required.
@@ -571,7 +630,9 @@ class UsersOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[Optional[_models.InvalidUserResponse]] = kwargs.pop("cls", None)
+        cls: ClsType[
+            Union[_models.InvalidUserResponse, _models.Standard4XXResponse, _models.Standard5XXResponse]
+        ] = kwargs.pop("cls", None)
 
         _request = build_users_validate_request(
             token=token,
@@ -587,18 +648,30 @@ class UsersOperations:
 
         response = pipeline_response.http_response
 
-        if response.status_code not in [200, 422]:
+        if response.status_code not in [204, 400, 422, 500]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
         deserialized = None
+        if response.status_code == 400:
+            if _stream:
+                deserialized = response.iter_bytes()
+            else:
+                deserialized = _deserialize(_models.Standard4XXResponse, response.json())
+
         if response.status_code == 422:
             if _stream:
                 deserialized = response.iter_bytes()
             else:
                 deserialized = _deserialize(_models.InvalidUserResponse, response.json())
+
+        if response.status_code == 500:
+            if _stream:
+                deserialized = response.iter_bytes()
+            else:
+                deserialized = _deserialize(_models.Standard5XXResponse, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -606,9 +679,9 @@ class UsersOperations:
         return deserialized  # type: ignore
 
     @overload
-    def login(  # pylint: disable=inconsistent-return-statements
+    def login(
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    ) -> Union[_models.Standard4XXResponse, _models.Standard5XXResponse]:
         """login.
 
         :param body: Required.
@@ -616,8 +689,10 @@ class UsersOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: None
-        :rtype: None
+        :return: Standard4XXResponse or Standard5XXResponse or None. The Standard4XXResponse is
+         compatible with MutableMapping
+        :rtype: ~brian.fun.service.models.Standard4XXResponse or
+         ~brian.fun.service.models.Standard5XXResponse or None
         :raises ~corehttp.exceptions.HttpResponseError:
 
         Example:
@@ -628,12 +703,18 @@ class UsersOperations:
                     "password": "str",  # Required.
                     "username": "str"  # Required.
                 }
+
+                # response body for status code(s): 400, 500
+                response == {
+                    "code": "str",  # A machine readable error code. Required.
+                    "message": "str"  # A human readable message. Required.
+                }
         """
 
     @overload
-    def login(  # pylint: disable=inconsistent-return-statements
+    def login(
         self, *, username: str, password: str, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    ) -> Union[_models.Standard4XXResponse, _models.Standard5XXResponse]:
         """login.
 
         :keyword username: Required.
@@ -643,15 +724,26 @@ class UsersOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: None
-        :rtype: None
+        :return: Standard4XXResponse or Standard5XXResponse or None. The Standard4XXResponse is
+         compatible with MutableMapping
+        :rtype: ~brian.fun.service.models.Standard4XXResponse or
+         ~brian.fun.service.models.Standard5XXResponse or None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 400, 500
+                response == {
+                    "code": "str",  # A machine readable error code. Required.
+                    "message": "str"  # A human readable message. Required.
+                }
         """
 
     @overload
-    def login(  # pylint: disable=inconsistent-return-statements
+    def login(
         self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    ) -> Union[_models.Standard4XXResponse, _models.Standard5XXResponse]:
         """login.
 
         :param body: Required.
@@ -659,14 +751,25 @@ class UsersOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: None
-        :rtype: None
+        :return: Standard4XXResponse or Standard5XXResponse or None. The Standard4XXResponse is
+         compatible with MutableMapping
+        :rtype: ~brian.fun.service.models.Standard4XXResponse or
+         ~brian.fun.service.models.Standard5XXResponse or None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 400, 500
+                response == {
+                    "code": "str",  # A machine readable error code. Required.
+                    "message": "str"  # A human readable message. Required.
+                }
         """
 
-    def login(  # pylint: disable=inconsistent-return-statements
+    def login(
         self, body: Union[JSON, IO[bytes]] = _Unset, *, username: str = _Unset, password: str = _Unset, **kwargs: Any
-    ) -> None:
+    ) -> Union[_models.Standard4XXResponse, _models.Standard5XXResponse]:
         """login.
 
         :param body: Is either a JSON type or a IO[bytes] type. Required.
@@ -675,8 +778,10 @@ class UsersOperations:
         :paramtype username: str
         :keyword password: Required.
         :paramtype password: str
-        :return: None
-        :rtype: None
+        :return: Standard4XXResponse or Standard5XXResponse or None. The Standard4XXResponse is
+         compatible with MutableMapping
+        :rtype: ~brian.fun.service.models.Standard4XXResponse or
+         ~brian.fun.service.models.Standard5XXResponse or None
         :raises ~corehttp.exceptions.HttpResponseError:
 
         Example:
@@ -686,6 +791,12 @@ class UsersOperations:
                 body = {
                     "password": "str",  # Required.
                     "username": "str"  # Required.
+                }
+
+                # response body for status code(s): 400, 500
+                response == {
+                    "code": "str",  # A machine readable error code. Required.
+                    "message": "str"  # A human readable message. Required.
                 }
         """
         error_map = {
@@ -700,7 +811,7 @@ class UsersOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[None] = kwargs.pop("cls", None)
+        cls: ClsType[Union[_models.Standard4XXResponse, _models.Standard5XXResponse]] = kwargs.pop("cls", None)
 
         if body is _Unset:
             if username is _Unset:
@@ -724,21 +835,36 @@ class UsersOperations:
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
 
-        if response.status_code not in [200, 401]:
+        if response.status_code not in [204, 400, 401, 500]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
+        deserialized = None
+        if response.status_code == 400:
+            if _stream:
+                deserialized = response.iter_bytes()
+            else:
+                deserialized = _deserialize(_models.Standard4XXResponse, response.json())
+
+        if response.status_code == 500:
+            if _stream:
+                deserialized = response.iter_bytes()
+            else:
+                deserialized = _deserialize(_models.Standard5XXResponse, response.json())
+
         if cls:
-            return cls(pipeline_response, None, {})  # type: ignore
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
 
     def logout(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """logout.
@@ -783,9 +909,9 @@ class UsersOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def forgot_password(  # pylint: disable=inconsistent-return-statements
+    def forgot_password(
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    ) -> Union[_models.Standard4XXResponse, _models.Standard5XXResponse]:
         """Sends a reset token to the user's email address.
 
         :param body: Required.
@@ -793,8 +919,10 @@ class UsersOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: None
-        :rtype: None
+        :return: Standard4XXResponse or Standard5XXResponse or None. The Standard4XXResponse is
+         compatible with MutableMapping
+        :rtype: ~brian.fun.service.models.Standard4XXResponse or
+         ~brian.fun.service.models.Standard5XXResponse or None
         :raises ~corehttp.exceptions.HttpResponseError:
 
         Example:
@@ -804,12 +932,18 @@ class UsersOperations:
                 body = {
                     "email": "str"  # Required.
                 }
+
+                # response body for status code(s): 400, 500
+                response == {
+                    "code": "str",  # A machine readable error code. Required.
+                    "message": "str"  # A human readable message. Required.
+                }
         """
 
     @overload
-    def forgot_password(  # pylint: disable=inconsistent-return-statements
+    def forgot_password(
         self, *, email: str, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    ) -> Union[_models.Standard4XXResponse, _models.Standard5XXResponse]:
         """Sends a reset token to the user's email address.
 
         :keyword email: Required.
@@ -817,15 +951,26 @@ class UsersOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: None
-        :rtype: None
+        :return: Standard4XXResponse or Standard5XXResponse or None. The Standard4XXResponse is
+         compatible with MutableMapping
+        :rtype: ~brian.fun.service.models.Standard4XXResponse or
+         ~brian.fun.service.models.Standard5XXResponse or None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 400, 500
+                response == {
+                    "code": "str",  # A machine readable error code. Required.
+                    "message": "str"  # A human readable message. Required.
+                }
         """
 
     @overload
-    def forgot_password(  # pylint: disable=inconsistent-return-statements
+    def forgot_password(
         self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    ) -> Union[_models.Standard4XXResponse, _models.Standard5XXResponse]:
         """Sends a reset token to the user's email address.
 
         :param body: Required.
@@ -833,22 +978,35 @@ class UsersOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: None
-        :rtype: None
+        :return: Standard4XXResponse or Standard5XXResponse or None. The Standard4XXResponse is
+         compatible with MutableMapping
+        :rtype: ~brian.fun.service.models.Standard4XXResponse or
+         ~brian.fun.service.models.Standard5XXResponse or None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 400, 500
+                response == {
+                    "code": "str",  # A machine readable error code. Required.
+                    "message": "str"  # A human readable message. Required.
+                }
         """
 
-    def forgot_password(  # pylint: disable=inconsistent-return-statements
+    def forgot_password(
         self, body: Union[JSON, IO[bytes]] = _Unset, *, email: str = _Unset, **kwargs: Any
-    ) -> None:
+    ) -> Union[_models.Standard4XXResponse, _models.Standard5XXResponse]:
         """Sends a reset token to the user's email address.
 
         :param body: Is either a JSON type or a IO[bytes] type. Required.
         :type body: JSON or IO[bytes]
         :keyword email: Required.
         :paramtype email: str
-        :return: None
-        :rtype: None
+        :return: Standard4XXResponse or Standard5XXResponse or None. The Standard4XXResponse is
+         compatible with MutableMapping
+        :rtype: ~brian.fun.service.models.Standard4XXResponse or
+         ~brian.fun.service.models.Standard5XXResponse or None
         :raises ~corehttp.exceptions.HttpResponseError:
 
         Example:
@@ -857,6 +1015,12 @@ class UsersOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "email": "str"  # Required.
+                }
+
+                # response body for status code(s): 400, 500
+                response == {
+                    "code": "str",  # A machine readable error code. Required.
+                    "message": "str"  # A human readable message. Required.
                 }
         """
         error_map = {
@@ -871,7 +1035,7 @@ class UsersOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[None] = kwargs.pop("cls", None)
+        cls: ClsType[Union[_models.Standard4XXResponse, _models.Standard5XXResponse]] = kwargs.pop("cls", None)
 
         if body is _Unset:
             if email is _Unset:
@@ -893,32 +1057,58 @@ class UsersOperations:
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
 
-        if response.status_code not in [200, 404]:
+        if response.status_code not in [204, 400, 404, 500]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if cls:
-            return cls(pipeline_response, None, {})  # type: ignore
+        deserialized = None
+        if response.status_code == 400:
+            if _stream:
+                deserialized = response.iter_bytes()
+            else:
+                deserialized = _deserialize(_models.Standard4XXResponse, response.json())
 
-    def reset_password(  # pylint: disable=inconsistent-return-statements
+        if response.status_code == 500:
+            if _stream:
+                deserialized = response.iter_bytes()
+            else:
+                deserialized = _deserialize(_models.Standard5XXResponse, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
+
+    def reset_password(
         self, *, reset_token: str, **kwargs: Any
-    ) -> None:
+    ) -> Union[_models.Standard4XXResponse, _models.Standard5XXResponse]:
         """reset_password.
 
         :keyword reset_token: Required.
         :paramtype reset_token: str
-        :return: None
-        :rtype: None
+        :return: Standard4XXResponse or Standard5XXResponse or None. The Standard4XXResponse is
+         compatible with MutableMapping
+        :rtype: ~brian.fun.service.models.Standard4XXResponse or
+         ~brian.fun.service.models.Standard5XXResponse or None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 400, 500
+                response == {
+                    "code": "str",  # A machine readable error code. Required.
+                    "message": "str"  # A human readable message. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -931,7 +1121,7 @@ class UsersOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[None] = kwargs.pop("cls", None)
+        cls: ClsType[Union[_models.Standard4XXResponse, _models.Standard5XXResponse]] = kwargs.pop("cls", None)
 
         _request = build_users_reset_password_request(
             reset_token=reset_token,
@@ -940,21 +1130,36 @@ class UsersOperations:
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
 
-        if response.status_code not in [200, 404]:
+        if response.status_code not in [204, 400, 404, 500]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
+        deserialized = None
+        if response.status_code == 400:
+            if _stream:
+                deserialized = response.iter_bytes()
+            else:
+                deserialized = _deserialize(_models.Standard4XXResponse, response.json())
+
+        if response.status_code == 500:
+            if _stream:
+                deserialized = response.iter_bytes()
+            else:
+                deserialized = _deserialize(_models.Standard5XXResponse, response.json())
+
         if cls:
-            return cls(pipeline_response, None, {})  # type: ignore
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
 
 
 class TodoItemsOperations:
@@ -978,7 +1183,9 @@ class TodoItemsOperations:
             self._client, self._config, self._serialize, self._deserialize
         )
 
-    def list(self, *, limit: int, offset: int, **kwargs: Any) -> _models.TodoPage:
+    def list(
+        self, *, limit: int, offset: int, **kwargs: Any
+    ) -> Union[_models.TodoPage, _models.Standard4XXResponse, _models.Standard5XXResponse]:
         # pylint: disable=line-too-long
         """list.
 
@@ -986,8 +1193,10 @@ class TodoItemsOperations:
         :paramtype limit: int
         :keyword offset: The offset to start paginating at. Required.
         :paramtype offset: int
-        :return: TodoPage. The TodoPage is compatible with MutableMapping
-        :rtype: ~brian.fun.service.models.TodoPage
+        :return: TodoPage or Standard4XXResponse or Standard5XXResponse. The TodoPage is compatible
+         with MutableMapping
+        :rtype: ~brian.fun.service.models.TodoPage or ~brian.fun.service.models.Standard4XXResponse or
+         ~brian.fun.service.models.Standard5XXResponse
         :raises ~corehttp.exceptions.HttpResponseError:
 
         Example:
@@ -1002,19 +1211,20 @@ class TodoItemsOperations:
                             "createdAt": "2020-02-20 00:00:00",  # When the todo item was
                               created. Required.
                             "createdBy": 0,  # User that created the todo. Required.
-                            "description": "str",  # A longer description of the todo
-                              item in markdown format. Required.
                             "id": 0,  # The item's unique id. Required.
                             "labels": [
                                 "str"  # Required.
                             ],
-                            "ownedBy": 0,  # User that the todo is assigned to. Required.
                             "status": "NotStarted",  # Default value is "NotStarted". The
                               status of the todo item. Required. Is one of the following types:
                               Literal["NotStarted"], Literal["InProgress"], Literal["Completed"]
                             "title": "str",  # The item's title. Required.
-                            "updatedAt": "2020-02-20 00:00:00"  # When the todo item was
+                            "updatedAt": "2020-02-20 00:00:00",  # When the todo item was
                               last updated. Required.
+                            "assignedTo": 0,  # Optional. User that the todo is assigned
+                              to.
+                            "description": "str"  # Optional. A longer description of the
+                              todo item in markdown format.
                         }
                     ],
                     "pagination": {
@@ -1026,6 +1236,11 @@ class TodoItemsOperations:
                         "prevLink": "str"  # Optional. A link to the previous page, if it
                           exists.
                     }
+                }
+                # response body for status code(s): 400, 500
+                response == {
+                    "code": "str",  # A machine readable error code. Required.
+                    "message": "str"  # A human readable message. Required.
                 }
         """
         error_map = {
@@ -1039,7 +1254,9 @@ class TodoItemsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.TodoPage] = kwargs.pop("cls", None)
+        cls: ClsType[Union[_models.TodoPage, _models.Standard4XXResponse, _models.Standard5XXResponse]] = kwargs.pop(
+            "cls", None
+        )
 
         _request = build_todo_items_list_request(
             limit=limit,
@@ -1056,16 +1273,29 @@ class TodoItemsOperations:
 
         response = pipeline_response.http_response
 
-        if response.status_code not in [200]:
+        if response.status_code not in [200, 400, 500]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if _stream:
-            deserialized = response.iter_bytes()
-        else:
-            deserialized = _deserialize(_models.TodoPage, response.json())
+        if response.status_code == 200:
+            if _stream:
+                deserialized = response.iter_bytes()
+            else:
+                deserialized = _deserialize(_models.TodoPage, response.json())
+
+        if response.status_code == 400:
+            if _stream:
+                deserialized = response.iter_bytes()
+            else:
+                deserialized = _deserialize(_models.Standard4XXResponse, response.json())
+
+        if response.status_code == 500:
+            if _stream:
+                deserialized = response.iter_bytes()
+            else:
+                deserialized = _deserialize(_models.Standard5XXResponse, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1075,7 +1305,7 @@ class TodoItemsOperations:
     @overload
     def create_json(
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> Union[_models.TodoItem, _models.InvalidTodoItem]:
+    ) -> Union[_models.TodoItem, _models.InvalidTodoItem, _models.Standard4XXResponse, _models.Standard5XXResponse]:
         # pylint: disable=line-too-long
         """create_json.
 
@@ -1084,8 +1314,10 @@ class TodoItemsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: TodoItem or InvalidTodoItem. The TodoItem is compatible with MutableMapping
-        :rtype: ~brian.fun.service.models.TodoItem or ~brian.fun.service.models.InvalidTodoItem
+        :return: TodoItem or InvalidTodoItem or Standard4XXResponse or Standard5XXResponse. The
+         TodoItem is compatible with MutableMapping
+        :rtype: ~brian.fun.service.models.TodoItem or ~brian.fun.service.models.InvalidTodoItem or
+         ~brian.fun.service.models.Standard4XXResponse or ~brian.fun.service.models.Standard5XXResponse
         :raises ~corehttp.exceptions.HttpResponseError:
 
         Example:
@@ -1095,8 +1327,16 @@ class TodoItemsOperations:
                 body = {
                     "attachments": [
                         {
-                            "description": "str",  # A description of the URL. Required.
-                            "url": "str"  # The url. Required.
+                            "contents": bytes("bytes", encoding="utf-8"),  # The contents
+                              of the file. Required.
+                            "filename": "str",  # The file name of the attachment.
+                              Required.
+                            "mediaType": "str",  # The media type of the attachment.
+                              Required.
+                            "todoItemId": 0,  # The todo item this is attached to.
+                              Required.
+                            "url": "str"  # The url where the attachment can be
+                              downloaded from. Required.
                         }
                     ],
                     "item": {
@@ -1105,19 +1345,19 @@ class TodoItemsOperations:
                         "createdAt": "2020-02-20 00:00:00",  # When the todo item was
                           created. Required.
                         "createdBy": 0,  # User that created the todo. Required.
-                        "description": "str",  # A longer description of the todo item in
-                          markdown format. Required.
                         "id": 0,  # The item's unique id. Required.
                         "labels": [
                             "str"  # Required.
                         ],
-                        "ownedBy": 0,  # User that the todo is assigned to. Required.
                         "status": "NotStarted",  # Default value is "NotStarted". The status
                           of the todo item. Required. Is one of the following types:
                           Literal["NotStarted"], Literal["InProgress"], Literal["Completed"]
                         "title": "str",  # The item's title. Required.
-                        "updatedAt": "2020-02-20 00:00:00"  # When the todo item was last
+                        "updatedAt": "2020-02-20 00:00:00",  # When the todo item was last
                           updated. Required.
+                        "assignedTo": 0,  # Optional. User that the todo is assigned to.
+                        "description": "str"  # Optional. A longer description of the todo
+                          item in markdown format.
                     }
                 }
 
@@ -1128,21 +1368,21 @@ class TodoItemsOperations:
                     "createdAt": "2020-02-20 00:00:00",  # When the todo item was created.
                       Required.
                     "createdBy": 0,  # User that created the todo. Required.
-                    "description": "str",  # A longer description of the todo item in markdown
-                      format. Required.
                     "id": 0,  # The item's unique id. Required.
                     "labels": [
                         "str"  # Required.
                     ],
-                    "ownedBy": 0,  # User that the todo is assigned to. Required.
                     "status": "NotStarted",  # Default value is "NotStarted". The status of the
                       todo item. Required. Is one of the following types: Literal["NotStarted"],
                       Literal["InProgress"], Literal["Completed"]
                     "title": "str",  # The item's title. Required.
-                    "updatedAt": "2020-02-20 00:00:00"  # When the todo item was last updated.
+                    "updatedAt": "2020-02-20 00:00:00",  # When the todo item was last updated.
                       Required.
+                    "assignedTo": 0,  # Optional. User that the todo is assigned to.
+                    "description": "str"  # Optional. A longer description of the todo item in
+                      markdown format.
                 }
-                # response body for status code(s): 422
+                # response body for status code(s): 422, 400, 500
                 response == {
                     "code": "str",  # A machine readable error code. Required.
                     "message": "str"  # A human readable message. Required.
@@ -1154,22 +1394,25 @@ class TodoItemsOperations:
         self,
         *,
         item: _models.TodoItem,
-        attachments: List[_models.TodoUrlAttachment],
+        attachments: List["_types.TodoAttachment"],
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> Union[_models.TodoItem, _models.InvalidTodoItem]:
+    ) -> Union[_models.TodoItem, _models.InvalidTodoItem, _models.Standard4XXResponse, _models.Standard5XXResponse]:
         # pylint: disable=line-too-long
         """create_json.
 
         :keyword item: Required.
         :paramtype item: ~brian.fun.service.models.TodoItem
         :keyword attachments: Required.
-        :paramtype attachments: list[~brian.fun.service.models.TodoUrlAttachment]
+        :paramtype attachments: list[~brian.fun.service.models.TodoFileAttachment or
+         ~brian.fun.service.models.TodoUrlAttachment]
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: TodoItem or InvalidTodoItem. The TodoItem is compatible with MutableMapping
-        :rtype: ~brian.fun.service.models.TodoItem or ~brian.fun.service.models.InvalidTodoItem
+        :return: TodoItem or InvalidTodoItem or Standard4XXResponse or Standard5XXResponse. The
+         TodoItem is compatible with MutableMapping
+        :rtype: ~brian.fun.service.models.TodoItem or ~brian.fun.service.models.InvalidTodoItem or
+         ~brian.fun.service.models.Standard4XXResponse or ~brian.fun.service.models.Standard5XXResponse
         :raises ~corehttp.exceptions.HttpResponseError:
 
         Example:
@@ -1182,21 +1425,21 @@ class TodoItemsOperations:
                     "createdAt": "2020-02-20 00:00:00",  # When the todo item was created.
                       Required.
                     "createdBy": 0,  # User that created the todo. Required.
-                    "description": "str",  # A longer description of the todo item in markdown
-                      format. Required.
                     "id": 0,  # The item's unique id. Required.
                     "labels": [
                         "str"  # Required.
                     ],
-                    "ownedBy": 0,  # User that the todo is assigned to. Required.
                     "status": "NotStarted",  # Default value is "NotStarted". The status of the
                       todo item. Required. Is one of the following types: Literal["NotStarted"],
                       Literal["InProgress"], Literal["Completed"]
                     "title": "str",  # The item's title. Required.
-                    "updatedAt": "2020-02-20 00:00:00"  # When the todo item was last updated.
+                    "updatedAt": "2020-02-20 00:00:00",  # When the todo item was last updated.
                       Required.
+                    "assignedTo": 0,  # Optional. User that the todo is assigned to.
+                    "description": "str"  # Optional. A longer description of the todo item in
+                      markdown format.
                 }
-                # response body for status code(s): 422
+                # response body for status code(s): 422, 400, 500
                 response == {
                     "code": "str",  # A machine readable error code. Required.
                     "message": "str"  # A human readable message. Required.
@@ -1206,7 +1449,7 @@ class TodoItemsOperations:
     @overload
     def create_json(
         self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> Union[_models.TodoItem, _models.InvalidTodoItem]:
+    ) -> Union[_models.TodoItem, _models.InvalidTodoItem, _models.Standard4XXResponse, _models.Standard5XXResponse]:
         # pylint: disable=line-too-long
         """create_json.
 
@@ -1215,8 +1458,10 @@ class TodoItemsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: TodoItem or InvalidTodoItem. The TodoItem is compatible with MutableMapping
-        :rtype: ~brian.fun.service.models.TodoItem or ~brian.fun.service.models.InvalidTodoItem
+        :return: TodoItem or InvalidTodoItem or Standard4XXResponse or Standard5XXResponse. The
+         TodoItem is compatible with MutableMapping
+        :rtype: ~brian.fun.service.models.TodoItem or ~brian.fun.service.models.InvalidTodoItem or
+         ~brian.fun.service.models.Standard4XXResponse or ~brian.fun.service.models.Standard5XXResponse
         :raises ~corehttp.exceptions.HttpResponseError:
 
         Example:
@@ -1229,21 +1474,21 @@ class TodoItemsOperations:
                     "createdAt": "2020-02-20 00:00:00",  # When the todo item was created.
                       Required.
                     "createdBy": 0,  # User that created the todo. Required.
-                    "description": "str",  # A longer description of the todo item in markdown
-                      format. Required.
                     "id": 0,  # The item's unique id. Required.
                     "labels": [
                         "str"  # Required.
                     ],
-                    "ownedBy": 0,  # User that the todo is assigned to. Required.
                     "status": "NotStarted",  # Default value is "NotStarted". The status of the
                       todo item. Required. Is one of the following types: Literal["NotStarted"],
                       Literal["InProgress"], Literal["Completed"]
                     "title": "str",  # The item's title. Required.
-                    "updatedAt": "2020-02-20 00:00:00"  # When the todo item was last updated.
+                    "updatedAt": "2020-02-20 00:00:00",  # When the todo item was last updated.
                       Required.
+                    "assignedTo": 0,  # Optional. User that the todo is assigned to.
+                    "description": "str"  # Optional. A longer description of the todo item in
+                      markdown format.
                 }
-                # response body for status code(s): 422
+                # response body for status code(s): 422, 400, 500
                 response == {
                     "code": "str",  # A machine readable error code. Required.
                     "message": "str"  # A human readable message. Required.
@@ -1255,9 +1500,9 @@ class TodoItemsOperations:
         body: Union[JSON, IO[bytes]] = _Unset,
         *,
         item: _models.TodoItem = _Unset,
-        attachments: List[_models.TodoUrlAttachment] = _Unset,
+        attachments: List["_types.TodoAttachment"] = _Unset,
         **kwargs: Any
-    ) -> Union[_models.TodoItem, _models.InvalidTodoItem]:
+    ) -> Union[_models.TodoItem, _models.InvalidTodoItem, _models.Standard4XXResponse, _models.Standard5XXResponse]:
         # pylint: disable=line-too-long
         """create_json.
 
@@ -1266,9 +1511,12 @@ class TodoItemsOperations:
         :keyword item: Required.
         :paramtype item: ~brian.fun.service.models.TodoItem
         :keyword attachments: Required.
-        :paramtype attachments: list[~brian.fun.service.models.TodoUrlAttachment]
-        :return: TodoItem or InvalidTodoItem. The TodoItem is compatible with MutableMapping
-        :rtype: ~brian.fun.service.models.TodoItem or ~brian.fun.service.models.InvalidTodoItem
+        :paramtype attachments: list[~brian.fun.service.models.TodoFileAttachment or
+         ~brian.fun.service.models.TodoUrlAttachment]
+        :return: TodoItem or InvalidTodoItem or Standard4XXResponse or Standard5XXResponse. The
+         TodoItem is compatible with MutableMapping
+        :rtype: ~brian.fun.service.models.TodoItem or ~brian.fun.service.models.InvalidTodoItem or
+         ~brian.fun.service.models.Standard4XXResponse or ~brian.fun.service.models.Standard5XXResponse
         :raises ~corehttp.exceptions.HttpResponseError:
 
         Example:
@@ -1278,8 +1526,16 @@ class TodoItemsOperations:
                 body = {
                     "attachments": [
                         {
-                            "description": "str",  # A description of the URL. Required.
-                            "url": "str"  # The url. Required.
+                            "contents": bytes("bytes", encoding="utf-8"),  # The contents
+                              of the file. Required.
+                            "filename": "str",  # The file name of the attachment.
+                              Required.
+                            "mediaType": "str",  # The media type of the attachment.
+                              Required.
+                            "todoItemId": 0,  # The todo item this is attached to.
+                              Required.
+                            "url": "str"  # The url where the attachment can be
+                              downloaded from. Required.
                         }
                     ],
                     "item": {
@@ -1288,19 +1544,19 @@ class TodoItemsOperations:
                         "createdAt": "2020-02-20 00:00:00",  # When the todo item was
                           created. Required.
                         "createdBy": 0,  # User that created the todo. Required.
-                        "description": "str",  # A longer description of the todo item in
-                          markdown format. Required.
                         "id": 0,  # The item's unique id. Required.
                         "labels": [
                             "str"  # Required.
                         ],
-                        "ownedBy": 0,  # User that the todo is assigned to. Required.
                         "status": "NotStarted",  # Default value is "NotStarted". The status
                           of the todo item. Required. Is one of the following types:
                           Literal["NotStarted"], Literal["InProgress"], Literal["Completed"]
                         "title": "str",  # The item's title. Required.
-                        "updatedAt": "2020-02-20 00:00:00"  # When the todo item was last
+                        "updatedAt": "2020-02-20 00:00:00",  # When the todo item was last
                           updated. Required.
+                        "assignedTo": 0,  # Optional. User that the todo is assigned to.
+                        "description": "str"  # Optional. A longer description of the todo
+                          item in markdown format.
                     }
                 }
 
@@ -1311,21 +1567,21 @@ class TodoItemsOperations:
                     "createdAt": "2020-02-20 00:00:00",  # When the todo item was created.
                       Required.
                     "createdBy": 0,  # User that created the todo. Required.
-                    "description": "str",  # A longer description of the todo item in markdown
-                      format. Required.
                     "id": 0,  # The item's unique id. Required.
                     "labels": [
                         "str"  # Required.
                     ],
-                    "ownedBy": 0,  # User that the todo is assigned to. Required.
                     "status": "NotStarted",  # Default value is "NotStarted". The status of the
                       todo item. Required. Is one of the following types: Literal["NotStarted"],
                       Literal["InProgress"], Literal["Completed"]
                     "title": "str",  # The item's title. Required.
-                    "updatedAt": "2020-02-20 00:00:00"  # When the todo item was last updated.
+                    "updatedAt": "2020-02-20 00:00:00",  # When the todo item was last updated.
                       Required.
+                    "assignedTo": 0,  # Optional. User that the todo is assigned to.
+                    "description": "str"  # Optional. A longer description of the todo item in
+                      markdown format.
                 }
-                # response body for status code(s): 422
+                # response body for status code(s): 422, 400, 500
                 response == {
                     "code": "str",  # A machine readable error code. Required.
                     "message": "str"  # A human readable message. Required.
@@ -1343,7 +1599,9 @@ class TodoItemsOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("content-type", None))
-        cls: ClsType[Union[_models.TodoItem, _models.InvalidTodoItem]] = kwargs.pop("cls", None)
+        cls: ClsType[
+            Union[_models.TodoItem, _models.InvalidTodoItem, _models.Standard4XXResponse, _models.Standard5XXResponse]
+        ] = kwargs.pop("cls", None)
 
         if body is _Unset:
             if item is _Unset:
@@ -1374,7 +1632,7 @@ class TodoItemsOperations:
 
         response = pipeline_response.http_response
 
-        if response.status_code not in [200, 422]:
+        if response.status_code not in [200, 400, 422, 500]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
@@ -1386,11 +1644,23 @@ class TodoItemsOperations:
             else:
                 deserialized = _deserialize(_models.TodoItem, response.json())
 
+        if response.status_code == 400:
+            if _stream:
+                deserialized = response.iter_bytes()
+            else:
+                deserialized = _deserialize(_models.Standard4XXResponse, response.json())
+
         if response.status_code == 422:
             if _stream:
                 deserialized = response.iter_bytes()
             else:
                 deserialized = _deserialize(_models.InvalidTodoItem, response.json())
+
+        if response.status_code == 500:
+            if _stream:
+                deserialized = response.iter_bytes()
+            else:
+                deserialized = _deserialize(_models.Standard5XXResponse, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1398,14 +1668,18 @@ class TodoItemsOperations:
         return deserialized  # type: ignore
 
     @overload
-    def create_form(self, body: JSON, **kwargs: Any) -> Union[_models.TodoItem, _models.InvalidTodoItem]:
+    def create_form(
+        self, body: JSON, **kwargs: Any
+    ) -> Union[_models.TodoItem, _models.InvalidTodoItem, _models.Standard4XXResponse, _models.Standard5XXResponse]:
         # pylint: disable=line-too-long
         """create_form.
 
         :param body: Required.
         :type body: JSON
-        :return: TodoItem or InvalidTodoItem. The TodoItem is compatible with MutableMapping
-        :rtype: ~brian.fun.service.models.TodoItem or ~brian.fun.service.models.InvalidTodoItem
+        :return: TodoItem or InvalidTodoItem or Standard4XXResponse or Standard5XXResponse. The
+         TodoItem is compatible with MutableMapping
+        :rtype: ~brian.fun.service.models.TodoItem or ~brian.fun.service.models.InvalidTodoItem or
+         ~brian.fun.service.models.Standard4XXResponse or ~brian.fun.service.models.Standard5XXResponse
         :raises ~corehttp.exceptions.HttpResponseError:
 
         Example:
@@ -1419,19 +1693,19 @@ class TodoItemsOperations:
                         "createdAt": "2020-02-20 00:00:00",  # When the todo item was
                           created. Required.
                         "createdBy": 0,  # User that created the todo. Required.
-                        "description": "str",  # A longer description of the todo item in
-                          markdown format. Required.
                         "id": 0,  # The item's unique id. Required.
                         "labels": [
                             "str"  # Required.
                         ],
-                        "ownedBy": 0,  # User that the todo is assigned to. Required.
                         "status": "NotStarted",  # Default value is "NotStarted". The status
                           of the todo item. Required. Is one of the following types:
                           Literal["NotStarted"], Literal["InProgress"], Literal["Completed"]
                         "title": "str",  # The item's title. Required.
-                        "updatedAt": "2020-02-20 00:00:00"  # When the todo item was last
+                        "updatedAt": "2020-02-20 00:00:00",  # When the todo item was last
                           updated. Required.
+                        "assignedTo": 0,  # Optional. User that the todo is assigned to.
+                        "description": "str"  # Optional. A longer description of the todo
+                          item in markdown format.
                     },
                     "attachments": [
                         {
@@ -1448,21 +1722,21 @@ class TodoItemsOperations:
                     "createdAt": "2020-02-20 00:00:00",  # When the todo item was created.
                       Required.
                     "createdBy": 0,  # User that created the todo. Required.
-                    "description": "str",  # A longer description of the todo item in markdown
-                      format. Required.
                     "id": 0,  # The item's unique id. Required.
                     "labels": [
                         "str"  # Required.
                     ],
-                    "ownedBy": 0,  # User that the todo is assigned to. Required.
                     "status": "NotStarted",  # Default value is "NotStarted". The status of the
                       todo item. Required. Is one of the following types: Literal["NotStarted"],
                       Literal["InProgress"], Literal["Completed"]
                     "title": "str",  # The item's title. Required.
-                    "updatedAt": "2020-02-20 00:00:00"  # When the todo item was last updated.
+                    "updatedAt": "2020-02-20 00:00:00",  # When the todo item was last updated.
                       Required.
+                    "assignedTo": 0,  # Optional. User that the todo is assigned to.
+                    "description": "str"  # Optional. A longer description of the todo item in
+                      markdown format.
                 }
-                # response body for status code(s): 422
+                # response body for status code(s): 422, 400, 500
                 response == {
                     "code": "str",  # A machine readable error code. Required.
                     "message": "str"  # A human readable message. Required.
@@ -1476,7 +1750,7 @@ class TodoItemsOperations:
         item: _models.TodoItem,
         attachments: Optional[List[Union[_models.TodoUrlAttachment, bytes]]] = None,
         **kwargs: Any
-    ) -> Union[_models.TodoItem, _models.InvalidTodoItem]:
+    ) -> Union[_models.TodoItem, _models.InvalidTodoItem, _models.Standard4XXResponse, _models.Standard5XXResponse]:
         # pylint: disable=line-too-long
         """create_form.
 
@@ -1484,8 +1758,10 @@ class TodoItemsOperations:
         :paramtype item: ~brian.fun.service.models.TodoItem
         :keyword attachments: Default value is None.
         :paramtype attachments: list[~brian.fun.service.models.TodoUrlAttachment or bytes]
-        :return: TodoItem or InvalidTodoItem. The TodoItem is compatible with MutableMapping
-        :rtype: ~brian.fun.service.models.TodoItem or ~brian.fun.service.models.InvalidTodoItem
+        :return: TodoItem or InvalidTodoItem or Standard4XXResponse or Standard5XXResponse. The
+         TodoItem is compatible with MutableMapping
+        :rtype: ~brian.fun.service.models.TodoItem or ~brian.fun.service.models.InvalidTodoItem or
+         ~brian.fun.service.models.Standard4XXResponse or ~brian.fun.service.models.Standard5XXResponse
         :raises ~corehttp.exceptions.HttpResponseError:
 
         Example:
@@ -1498,21 +1774,21 @@ class TodoItemsOperations:
                     "createdAt": "2020-02-20 00:00:00",  # When the todo item was created.
                       Required.
                     "createdBy": 0,  # User that created the todo. Required.
-                    "description": "str",  # A longer description of the todo item in markdown
-                      format. Required.
                     "id": 0,  # The item's unique id. Required.
                     "labels": [
                         "str"  # Required.
                     ],
-                    "ownedBy": 0,  # User that the todo is assigned to. Required.
                     "status": "NotStarted",  # Default value is "NotStarted". The status of the
                       todo item. Required. Is one of the following types: Literal["NotStarted"],
                       Literal["InProgress"], Literal["Completed"]
                     "title": "str",  # The item's title. Required.
-                    "updatedAt": "2020-02-20 00:00:00"  # When the todo item was last updated.
+                    "updatedAt": "2020-02-20 00:00:00",  # When the todo item was last updated.
                       Required.
+                    "assignedTo": 0,  # Optional. User that the todo is assigned to.
+                    "description": "str"  # Optional. A longer description of the todo item in
+                      markdown format.
                 }
-                # response body for status code(s): 422
+                # response body for status code(s): 422, 400, 500
                 response == {
                     "code": "str",  # A machine readable error code. Required.
                     "message": "str"  # A human readable message. Required.
@@ -1526,7 +1802,7 @@ class TodoItemsOperations:
         item: _models.TodoItem = _Unset,
         attachments: Optional[List[Union[_models.TodoUrlAttachment, bytes]]] = None,
         **kwargs: Any
-    ) -> Union[_models.TodoItem, _models.InvalidTodoItem]:
+    ) -> Union[_models.TodoItem, _models.InvalidTodoItem, _models.Standard4XXResponse, _models.Standard5XXResponse]:
         # pylint: disable=line-too-long
         """create_form.
 
@@ -1536,8 +1812,10 @@ class TodoItemsOperations:
         :paramtype item: ~brian.fun.service.models.TodoItem
         :keyword attachments: Default value is None.
         :paramtype attachments: list[~brian.fun.service.models.TodoUrlAttachment or bytes]
-        :return: TodoItem or InvalidTodoItem. The TodoItem is compatible with MutableMapping
-        :rtype: ~brian.fun.service.models.TodoItem or ~brian.fun.service.models.InvalidTodoItem
+        :return: TodoItem or InvalidTodoItem or Standard4XXResponse or Standard5XXResponse. The
+         TodoItem is compatible with MutableMapping
+        :rtype: ~brian.fun.service.models.TodoItem or ~brian.fun.service.models.InvalidTodoItem or
+         ~brian.fun.service.models.Standard4XXResponse or ~brian.fun.service.models.Standard5XXResponse
         :raises ~corehttp.exceptions.HttpResponseError:
 
         Example:
@@ -1551,19 +1829,19 @@ class TodoItemsOperations:
                         "createdAt": "2020-02-20 00:00:00",  # When the todo item was
                           created. Required.
                         "createdBy": 0,  # User that created the todo. Required.
-                        "description": "str",  # A longer description of the todo item in
-                          markdown format. Required.
                         "id": 0,  # The item's unique id. Required.
                         "labels": [
                             "str"  # Required.
                         ],
-                        "ownedBy": 0,  # User that the todo is assigned to. Required.
                         "status": "NotStarted",  # Default value is "NotStarted". The status
                           of the todo item. Required. Is one of the following types:
                           Literal["NotStarted"], Literal["InProgress"], Literal["Completed"]
                         "title": "str",  # The item's title. Required.
-                        "updatedAt": "2020-02-20 00:00:00"  # When the todo item was last
+                        "updatedAt": "2020-02-20 00:00:00",  # When the todo item was last
                           updated. Required.
+                        "assignedTo": 0,  # Optional. User that the todo is assigned to.
+                        "description": "str"  # Optional. A longer description of the todo
+                          item in markdown format.
                     },
                     "attachments": [
                         {
@@ -1580,21 +1858,21 @@ class TodoItemsOperations:
                     "createdAt": "2020-02-20 00:00:00",  # When the todo item was created.
                       Required.
                     "createdBy": 0,  # User that created the todo. Required.
-                    "description": "str",  # A longer description of the todo item in markdown
-                      format. Required.
                     "id": 0,  # The item's unique id. Required.
                     "labels": [
                         "str"  # Required.
                     ],
-                    "ownedBy": 0,  # User that the todo is assigned to. Required.
                     "status": "NotStarted",  # Default value is "NotStarted". The status of the
                       todo item. Required. Is one of the following types: Literal["NotStarted"],
                       Literal["InProgress"], Literal["Completed"]
                     "title": "str",  # The item's title. Required.
-                    "updatedAt": "2020-02-20 00:00:00"  # When the todo item was last updated.
+                    "updatedAt": "2020-02-20 00:00:00",  # When the todo item was last updated.
                       Required.
+                    "assignedTo": 0,  # Optional. User that the todo is assigned to.
+                    "description": "str"  # Optional. A longer description of the todo item in
+                      markdown format.
                 }
-                # response body for status code(s): 422
+                # response body for status code(s): 422, 400, 500
                 response == {
                     "code": "str",  # A machine readable error code. Required.
                     "message": "str"  # A human readable message. Required.
@@ -1611,7 +1889,9 @@ class TodoItemsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[Union[_models.TodoItem, _models.InvalidTodoItem]] = kwargs.pop("cls", None)
+        cls: ClsType[
+            Union[_models.TodoItem, _models.InvalidTodoItem, _models.Standard4XXResponse, _models.Standard5XXResponse]
+        ] = kwargs.pop("cls", None)
 
         if body is _Unset:
             if item is _Unset:
@@ -1639,7 +1919,7 @@ class TodoItemsOperations:
 
         response = pipeline_response.http_response
 
-        if response.status_code not in [200, 422]:
+        if response.status_code not in [200, 400, 422, 500]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
@@ -1651,11 +1931,23 @@ class TodoItemsOperations:
             else:
                 deserialized = _deserialize(_models.TodoItem, response.json())
 
+        if response.status_code == 400:
+            if _stream:
+                deserialized = response.iter_bytes()
+            else:
+                deserialized = _deserialize(_models.Standard4XXResponse, response.json())
+
         if response.status_code == 422:
             if _stream:
                 deserialized = response.iter_bytes()
             else:
                 deserialized = _deserialize(_models.InvalidTodoItem, response.json())
+
+        if response.status_code == 500:
+            if _stream:
+                deserialized = response.iter_bytes()
+            else:
+                deserialized = _deserialize(_models.Standard5XXResponse, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1682,19 +1974,19 @@ class TodoItemsOperations:
                     "createdAt": "2020-02-20 00:00:00",  # When the todo item was created.
                       Required.
                     "createdBy": 0,  # User that created the todo. Required.
-                    "description": "str",  # A longer description of the todo item in markdown
-                      format. Required.
                     "id": 0,  # The item's unique id. Required.
                     "labels": [
                         "str"  # Required.
                     ],
-                    "ownedBy": 0,  # User that the todo is assigned to. Required.
                     "status": "NotStarted",  # Default value is "NotStarted". The status of the
                       todo item. Required. Is one of the following types: Literal["NotStarted"],
                       Literal["InProgress"], Literal["Completed"]
                     "title": "str",  # The item's title. Required.
-                    "updatedAt": "2020-02-20 00:00:00"  # When the todo item was last updated.
+                    "updatedAt": "2020-02-20 00:00:00",  # When the todo item was last updated.
                       Required.
+                    "assignedTo": 0,  # Optional. User that the todo is assigned to.
+                    "description": "str"  # Optional. A longer description of the todo item in
+                      markdown format.
                 }
         """
         error_map = {
@@ -1766,9 +2058,9 @@ class TodoItemsOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "patch": {
+                        "assignedTo": 0,  # Optional. User that the todo is assigned to.
                         "description": "str",  # Optional. A longer description of the todo
                           item in markdown format.
-                        "ownedBy": 0,  # Optional. User that the todo is assigned to.
                         "status": "NotStarted",  # Optional. Default value is "NotStarted".
                           The status of the todo item. Is one of the following types:
                           Literal["NotStarted"], Literal["InProgress"], Literal["Completed"]
@@ -1783,19 +2075,19 @@ class TodoItemsOperations:
                     "createdAt": "2020-02-20 00:00:00",  # When the todo item was created.
                       Required.
                     "createdBy": 0,  # User that created the todo. Required.
-                    "description": "str",  # A longer description of the todo item in markdown
-                      format. Required.
                     "id": 0,  # The item's unique id. Required.
                     "labels": [
                         "str"  # Required.
                     ],
-                    "ownedBy": 0,  # User that the todo is assigned to. Required.
                     "status": "NotStarted",  # Default value is "NotStarted". The status of the
                       todo item. Required. Is one of the following types: Literal["NotStarted"],
                       Literal["InProgress"], Literal["Completed"]
                     "title": "str",  # The item's title. Required.
-                    "updatedAt": "2020-02-20 00:00:00"  # When the todo item was last updated.
+                    "updatedAt": "2020-02-20 00:00:00",  # When the todo item was last updated.
                       Required.
+                    "assignedTo": 0,  # Optional. User that the todo is assigned to.
+                    "description": "str"  # Optional. A longer description of the todo item in
+                      markdown format.
                 }
         """
 
@@ -1832,19 +2124,19 @@ class TodoItemsOperations:
                     "createdAt": "2020-02-20 00:00:00",  # When the todo item was created.
                       Required.
                     "createdBy": 0,  # User that created the todo. Required.
-                    "description": "str",  # A longer description of the todo item in markdown
-                      format. Required.
                     "id": 0,  # The item's unique id. Required.
                     "labels": [
                         "str"  # Required.
                     ],
-                    "ownedBy": 0,  # User that the todo is assigned to. Required.
                     "status": "NotStarted",  # Default value is "NotStarted". The status of the
                       todo item. Required. Is one of the following types: Literal["NotStarted"],
                       Literal["InProgress"], Literal["Completed"]
                     "title": "str",  # The item's title. Required.
-                    "updatedAt": "2020-02-20 00:00:00"  # When the todo item was last updated.
+                    "updatedAt": "2020-02-20 00:00:00",  # When the todo item was last updated.
                       Required.
+                    "assignedTo": 0,  # Optional. User that the todo is assigned to.
+                    "description": "str"  # Optional. A longer description of the todo item in
+                      markdown format.
                 }
         """
 
@@ -1876,19 +2168,19 @@ class TodoItemsOperations:
                     "createdAt": "2020-02-20 00:00:00",  # When the todo item was created.
                       Required.
                     "createdBy": 0,  # User that created the todo. Required.
-                    "description": "str",  # A longer description of the todo item in markdown
-                      format. Required.
                     "id": 0,  # The item's unique id. Required.
                     "labels": [
                         "str"  # Required.
                     ],
-                    "ownedBy": 0,  # User that the todo is assigned to. Required.
                     "status": "NotStarted",  # Default value is "NotStarted". The status of the
                       todo item. Required. Is one of the following types: Literal["NotStarted"],
                       Literal["InProgress"], Literal["Completed"]
                     "title": "str",  # The item's title. Required.
-                    "updatedAt": "2020-02-20 00:00:00"  # When the todo item was last updated.
+                    "updatedAt": "2020-02-20 00:00:00",  # When the todo item was last updated.
                       Required.
+                    "assignedTo": 0,  # Optional. User that the todo is assigned to.
+                    "description": "str"  # Optional. A longer description of the todo item in
+                      markdown format.
                 }
         """
 
@@ -1914,9 +2206,9 @@ class TodoItemsOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "patch": {
+                        "assignedTo": 0,  # Optional. User that the todo is assigned to.
                         "description": "str",  # Optional. A longer description of the todo
                           item in markdown format.
-                        "ownedBy": 0,  # Optional. User that the todo is assigned to.
                         "status": "NotStarted",  # Optional. Default value is "NotStarted".
                           The status of the todo item. Is one of the following types:
                           Literal["NotStarted"], Literal["InProgress"], Literal["Completed"]
@@ -1931,19 +2223,19 @@ class TodoItemsOperations:
                     "createdAt": "2020-02-20 00:00:00",  # When the todo item was created.
                       Required.
                     "createdBy": 0,  # User that created the todo. Required.
-                    "description": "str",  # A longer description of the todo item in markdown
-                      format. Required.
                     "id": 0,  # The item's unique id. Required.
                     "labels": [
                         "str"  # Required.
                     ],
-                    "ownedBy": 0,  # User that the todo is assigned to. Required.
                     "status": "NotStarted",  # Default value is "NotStarted". The status of the
                       todo item. Required. Is one of the following types: Literal["NotStarted"],
                       Literal["InProgress"], Literal["Completed"]
                     "title": "str",  # The item's title. Required.
-                    "updatedAt": "2020-02-20 00:00:00"  # When the todo item was last updated.
+                    "updatedAt": "2020-02-20 00:00:00",  # When the todo item was last updated.
                       Required.
+                    "assignedTo": 0,  # Optional. User that the todo is assigned to.
+                    "description": "str"  # Optional. A longer description of the todo item in
+                      markdown format.
                 }
         """
         error_map = {
@@ -2004,14 +2296,25 @@ class TodoItemsOperations:
 
         return deserialized  # type: ignore
 
-    def delete(self, id: int, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def delete(self, id: int, **kwargs: Any) -> Union[_models.Standard4XXResponse, _models.Standard5XXResponse]:
         """delete.
 
         :param id: Required.
         :type id: int
-        :return: None
-        :rtype: None
+        :return: Standard4XXResponse or Standard5XXResponse or None. The Standard4XXResponse is
+         compatible with MutableMapping
+        :rtype: ~brian.fun.service.models.Standard4XXResponse or
+         ~brian.fun.service.models.Standard5XXResponse or None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 400, 500
+                response == {
+                    "code": "str",  # A machine readable error code. Required.
+                    "message": "str"  # A human readable message. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2024,7 +2327,7 @@ class TodoItemsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[None] = kwargs.pop("cls", None)
+        cls: ClsType[Union[_models.Standard4XXResponse, _models.Standard5XXResponse]] = kwargs.pop("cls", None)
 
         _request = build_todo_items_delete_request(
             id=id,
@@ -2033,21 +2336,36 @@ class TodoItemsOperations:
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
 
-        if response.status_code not in [200, 404]:
+        if response.status_code not in [204, 400, 404, 500]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
+        deserialized = None
+        if response.status_code == 400:
+            if _stream:
+                deserialized = response.iter_bytes()
+            else:
+                deserialized = _deserialize(_models.Standard4XXResponse, response.json())
+
+        if response.status_code == 500:
+            if _stream:
+                deserialized = response.iter_bytes()
+            else:
+                deserialized = _deserialize(_models.Standard5XXResponse, response.json())
+
         if cls:
-            return cls(pipeline_response, None, {})  # type: ignore
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
 
 
 class TodoItemsAttachmentsOperations:
@@ -2067,14 +2385,18 @@ class TodoItemsAttachmentsOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    def list(self, item_id: int, **kwargs: Any) -> Optional[List["_types.TodoAttachment"]]:
+    def list(
+        self, item_id: int, **kwargs: Any
+    ) -> Union[List["_types.TodoAttachment"], _models.Standard4XXResponse, _models.Standard5XXResponse]:
         """list.
 
         :param item_id: Required.
         :type item_id: int
-        :return: list of TodoFileAttachment or TodoUrlAttachment or None
+        :return: list of TodoFileAttachment or TodoUrlAttachment or Standard4XXResponse or
+         Standard5XXResponse or None. The Standard4XXResponse is compatible with MutableMapping
         :rtype: list[~brian.fun.service.models.TodoFileAttachment or
-         ~brian.fun.service.models.TodoUrlAttachment] or None
+         ~brian.fun.service.models.TodoUrlAttachment] or ~brian.fun.service.models.Standard4XXResponse
+         or ~brian.fun.service.models.Standard5XXResponse or None
         :raises ~corehttp.exceptions.HttpResponseError:
 
         Example:
@@ -2083,6 +2405,8 @@ class TodoItemsAttachmentsOperations:
                 # response body for status code(s): 200
                 response == [
                     {
+                        "contents": bytes("bytes", encoding="utf-8"),  # The contents of the
+                          file. Required.
                         "filename": "str",  # The file name of the attachment. Required.
                         "mediaType": "str",  # The media type of the attachment. Required.
                         "todoItemId": 0,  # The todo item this is attached to. Required.
@@ -2090,6 +2414,11 @@ class TodoItemsAttachmentsOperations:
                           Required.
                     }
                 ]
+                # response body for status code(s): 400, 500
+                response == {
+                    "code": "str",  # A machine readable error code. Required.
+                    "message": "str"  # A human readable message. Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2102,7 +2431,9 @@ class TodoItemsAttachmentsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[Optional[List["_types.TodoAttachment"]]] = kwargs.pop("cls", None)
+        cls: ClsType[
+            Union[List["_types.TodoAttachment"], _models.Standard4XXResponse, _models.Standard5XXResponse]
+        ] = kwargs.pop("cls", None)
 
         _request = build_todo_items_attachments_list_request(
             item_id=item_id,
@@ -2118,7 +2449,7 @@ class TodoItemsAttachmentsOperations:
 
         response = pipeline_response.http_response
 
-        if response.status_code not in [200, 404]:
+        if response.status_code not in [200, 400, 404, 500]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
@@ -2131,15 +2462,27 @@ class TodoItemsAttachmentsOperations:
             else:
                 deserialized = _deserialize(List["_types.TodoAttachment"], response.json())
 
+        if response.status_code == 400:
+            if _stream:
+                deserialized = response.iter_bytes()
+            else:
+                deserialized = _deserialize(_models.Standard4XXResponse, response.json())
+
+        if response.status_code == 500:
+            if _stream:
+                deserialized = response.iter_bytes()
+            else:
+                deserialized = _deserialize(_models.Standard5XXResponse, response.json())
+
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
 
         return deserialized  # type: ignore
 
     @overload
-    def create_url_attachment(  # pylint: disable=inconsistent-return-statements
+    def create_url_attachment(
         self, item_id: int, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    ) -> Union[_models.Standard4XXResponse, _models.Standard5XXResponse]:
         """create_url_attachment.
 
         :param item_id: Required.
@@ -2149,8 +2492,10 @@ class TodoItemsAttachmentsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: None
-        :rtype: None
+        :return: Standard4XXResponse or Standard5XXResponse or None. The Standard4XXResponse is
+         compatible with MutableMapping
+        :rtype: ~brian.fun.service.models.Standard4XXResponse or
+         ~brian.fun.service.models.Standard5XXResponse or None
         :raises ~corehttp.exceptions.HttpResponseError:
 
         Example:
@@ -2159,39 +2504,57 @@ class TodoItemsAttachmentsOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "contents": {
-                        "description": "str",  # A description of the URL. Required.
-                        "url": "str"  # The url. Required.
+                        "contents": bytes("bytes", encoding="utf-8"),  # The contents of the
+                          file. Required.
+                        "filename": "str",  # The file name of the attachment. Required.
+                        "mediaType": "str",  # The media type of the attachment. Required.
+                        "todoItemId": 0,  # The todo item this is attached to. Required.
+                        "url": "str"  # The url where the attachment can be downloaded from.
+                          Required.
                     }
+                }
+
+                # response body for status code(s): 400, 500
+                response == {
+                    "code": "str",  # A machine readable error code. Required.
+                    "message": "str"  # A human readable message. Required.
                 }
         """
 
     @overload
-    def create_url_attachment(  # pylint: disable=inconsistent-return-statements
-        self,
-        item_id: int,
-        *,
-        contents: _models.TodoUrlAttachment,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> None:
+    def create_url_attachment(
+        self, item_id: int, *, contents: "_types.TodoAttachment", content_type: str = "application/json", **kwargs: Any
+    ) -> Union[_models.Standard4XXResponse, _models.Standard5XXResponse]:
         """create_url_attachment.
 
         :param item_id: Required.
         :type item_id: int
-        :keyword contents: Required.
-        :paramtype contents: ~brian.fun.service.models.TodoUrlAttachment
+        :keyword contents: Is either a TodoFileAttachment type or a TodoUrlAttachment type. Required.
+        :paramtype contents: ~brian.fun.service.models.TodoFileAttachment or
+         ~brian.fun.service.models.TodoUrlAttachment
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: None
-        :rtype: None
+        :return: Standard4XXResponse or Standard5XXResponse or None. The Standard4XXResponse is
+         compatible with MutableMapping
+        :rtype: ~brian.fun.service.models.Standard4XXResponse or
+         ~brian.fun.service.models.Standard5XXResponse or None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 400, 500
+                response == {
+                    "code": "str",  # A machine readable error code. Required.
+                    "message": "str"  # A human readable message. Required.
+                }
         """
 
     @overload
-    def create_url_attachment(  # pylint: disable=inconsistent-return-statements
+    def create_url_attachment(
         self, item_id: int, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    ) -> Union[_models.Standard4XXResponse, _models.Standard5XXResponse]:
         """create_url_attachment.
 
         :param item_id: Required.
@@ -2201,29 +2564,43 @@ class TodoItemsAttachmentsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: None
-        :rtype: None
+        :return: Standard4XXResponse or Standard5XXResponse or None. The Standard4XXResponse is
+         compatible with MutableMapping
+        :rtype: ~brian.fun.service.models.Standard4XXResponse or
+         ~brian.fun.service.models.Standard5XXResponse or None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 400, 500
+                response == {
+                    "code": "str",  # A machine readable error code. Required.
+                    "message": "str"  # A human readable message. Required.
+                }
         """
 
-    def create_url_attachment(  # pylint: disable=inconsistent-return-statements
+    def create_url_attachment(
         self,
         item_id: int,
         body: Union[JSON, IO[bytes]] = _Unset,
         *,
-        contents: _models.TodoUrlAttachment = _Unset,
+        contents: "_types.TodoAttachment" = _Unset,
         **kwargs: Any
-    ) -> None:
+    ) -> Union[_models.Standard4XXResponse, _models.Standard5XXResponse]:
         """create_url_attachment.
 
         :param item_id: Required.
         :type item_id: int
         :param body: Is either a JSON type or a IO[bytes] type. Required.
         :type body: JSON or IO[bytes]
-        :keyword contents: Required.
-        :paramtype contents: ~brian.fun.service.models.TodoUrlAttachment
-        :return: None
-        :rtype: None
+        :keyword contents: Is either a TodoFileAttachment type or a TodoUrlAttachment type. Required.
+        :paramtype contents: ~brian.fun.service.models.TodoFileAttachment or
+         ~brian.fun.service.models.TodoUrlAttachment
+        :return: Standard4XXResponse or Standard5XXResponse or None. The Standard4XXResponse is
+         compatible with MutableMapping
+        :rtype: ~brian.fun.service.models.Standard4XXResponse or
+         ~brian.fun.service.models.Standard5XXResponse or None
         :raises ~corehttp.exceptions.HttpResponseError:
 
         Example:
@@ -2232,9 +2609,20 @@ class TodoItemsAttachmentsOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "contents": {
-                        "description": "str",  # A description of the URL. Required.
-                        "url": "str"  # The url. Required.
+                        "contents": bytes("bytes", encoding="utf-8"),  # The contents of the
+                          file. Required.
+                        "filename": "str",  # The file name of the attachment. Required.
+                        "mediaType": "str",  # The media type of the attachment. Required.
+                        "todoItemId": 0,  # The todo item this is attached to. Required.
+                        "url": "str"  # The url where the attachment can be downloaded from.
+                          Required.
                     }
+                }
+
+                # response body for status code(s): 400, 500
+                response == {
+                    "code": "str",  # A machine readable error code. Required.
+                    "message": "str"  # A human readable message. Required.
                 }
         """
         error_map = {
@@ -2249,7 +2637,7 @@ class TodoItemsAttachmentsOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("content-type", None))
-        cls: ClsType[None] = kwargs.pop("cls", None)
+        cls: ClsType[Union[_models.Standard4XXResponse, _models.Standard5XXResponse]] = kwargs.pop("cls", None)
 
         if body is _Unset:
             if contents is _Unset:
@@ -2272,34 +2660,51 @@ class TodoItemsAttachmentsOperations:
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
 
-        if response.status_code not in [200, 404]:
+        if response.status_code not in [204, 400, 404, 500]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
+        deserialized = None
+        if response.status_code == 400:
+            if _stream:
+                deserialized = response.iter_bytes()
+            else:
+                deserialized = _deserialize(_models.Standard4XXResponse, response.json())
+
+        if response.status_code == 500:
+            if _stream:
+                deserialized = response.iter_bytes()
+            else:
+                deserialized = _deserialize(_models.Standard5XXResponse, response.json())
+
         if cls:
-            return cls(pipeline_response, None, {})  # type: ignore
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
 
     @overload
-    def create_file_attachment(  # pylint: disable=inconsistent-return-statements
+    def create_file_attachment(
         self, item_id: int, body: JSON, **kwargs: Any
-    ) -> None:
+    ) -> Union[_models.Standard4XXResponse, _models.Standard5XXResponse]:
         """create_file_attachment.
 
         :param item_id: Required.
         :type item_id: int
         :param body: Required.
         :type body: JSON
-        :return: None
-        :rtype: None
+        :return: Standard4XXResponse or Standard5XXResponse or None. The Standard4XXResponse is
+         compatible with MutableMapping
+        :rtype: ~brian.fun.service.models.Standard4XXResponse or
+         ~brian.fun.service.models.Standard5XXResponse or None
         :raises ~corehttp.exceptions.HttpResponseError:
 
         Example:
@@ -2309,26 +2714,43 @@ class TodoItemsAttachmentsOperations:
                 body = {
                     "contents": bytes("bytes", encoding="utf-8")  # Required.
                 }
+
+                # response body for status code(s): 400, 500
+                response == {
+                    "code": "str",  # A machine readable error code. Required.
+                    "message": "str"  # A human readable message. Required.
+                }
         """
 
     @overload
-    def create_file_attachment(  # pylint: disable=inconsistent-return-statements
+    def create_file_attachment(
         self, item_id: int, *, contents: bytes, **kwargs: Any
-    ) -> None:
+    ) -> Union[_models.Standard4XXResponse, _models.Standard5XXResponse]:
         """create_file_attachment.
 
         :param item_id: Required.
         :type item_id: int
         :keyword contents: Required.
         :paramtype contents: bytes
-        :return: None
-        :rtype: None
+        :return: Standard4XXResponse or Standard5XXResponse or None. The Standard4XXResponse is
+         compatible with MutableMapping
+        :rtype: ~brian.fun.service.models.Standard4XXResponse or
+         ~brian.fun.service.models.Standard5XXResponse or None
         :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 400, 500
+                response == {
+                    "code": "str",  # A machine readable error code. Required.
+                    "message": "str"  # A human readable message. Required.
+                }
         """
 
-    def create_file_attachment(  # pylint: disable=inconsistent-return-statements
+    def create_file_attachment(
         self, item_id: int, body: JSON = _Unset, *, contents: bytes = _Unset, **kwargs: Any
-    ) -> None:
+    ) -> Union[_models.Standard4XXResponse, _models.Standard5XXResponse]:
         """create_file_attachment.
 
         :param item_id: Required.
@@ -2337,8 +2759,10 @@ class TodoItemsAttachmentsOperations:
         :type body: JSON
         :keyword contents: Required.
         :paramtype contents: bytes
-        :return: None
-        :rtype: None
+        :return: Standard4XXResponse or Standard5XXResponse or None. The Standard4XXResponse is
+         compatible with MutableMapping
+        :rtype: ~brian.fun.service.models.Standard4XXResponse or
+         ~brian.fun.service.models.Standard5XXResponse or None
         :raises ~corehttp.exceptions.HttpResponseError:
 
         Example:
@@ -2347,6 +2771,12 @@ class TodoItemsAttachmentsOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "contents": bytes("bytes", encoding="utf-8")  # Required.
+                }
+
+                # response body for status code(s): 400, 500
+                response == {
+                    "code": "str",  # A machine readable error code. Required.
+                    "message": "str"  # A human readable message. Required.
                 }
         """
         error_map = {
@@ -2360,7 +2790,7 @@ class TodoItemsAttachmentsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[None] = kwargs.pop("cls", None)
+        cls: ClsType[Union[_models.Standard4XXResponse, _models.Standard5XXResponse]] = kwargs.pop("cls", None)
 
         if body is _Unset:
             if contents is _Unset:
@@ -2382,18 +2812,33 @@ class TodoItemsAttachmentsOperations:
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
 
-        if response.status_code not in [200, 404]:
+        if response.status_code not in [204, 400, 404, 500]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
+        deserialized = None
+        if response.status_code == 400:
+            if _stream:
+                deserialized = response.iter_bytes()
+            else:
+                deserialized = _deserialize(_models.Standard4XXResponse, response.json())
+
+        if response.status_code == 500:
+            if _stream:
+                deserialized = response.iter_bytes()
+            else:
+                deserialized = _deserialize(_models.Standard5XXResponse, response.json())
+
         if cls:
-            return cls(pipeline_response, None, {})  # type: ignore
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore

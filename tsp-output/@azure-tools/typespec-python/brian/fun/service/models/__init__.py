@@ -1,9 +1,11 @@
 # coding=utf-8
 
 
-from ._models import Error
+from ._models import ApiError
 from ._models import InvalidTodoItem
 from ._models import InvalidUserResponse
+from ._models import Standard4XXResponse
+from ._models import Standard5XXResponse
 from ._models import TodoFileAttachment
 from ._models import TodoItem
 from ._models import TodoItemPatch
@@ -19,9 +21,11 @@ from ._patch import *  # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
-    "Error",
+    "ApiError",
     "InvalidTodoItem",
     "InvalidUserResponse",
+    "Standard4XXResponse",
+    "Standard5XXResponse",
     "TodoFileAttachment",
     "TodoItem",
     "TodoItemPatch",

@@ -2,11 +2,11 @@
 
 package com.brian.fun.service.implementation.models;
 
-import com.brian.fun.service.models.TodoUrlAttachment;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.generic.core.annotation.Generated;
 import com.generic.core.annotation.Immutable;
+import com.generic.core.models.BinaryData;
 
 /**
  * The CreateUrlAttachmentRequest model.
@@ -18,7 +18,7 @@ public final class CreateUrlAttachmentRequest {
      */
     @Generated
     @JsonProperty(value = "contents")
-    private TodoUrlAttachment contents;
+    private BinaryData contents;
 
     /**
      * Creates an instance of CreateUrlAttachmentRequest class.
@@ -27,7 +27,7 @@ public final class CreateUrlAttachmentRequest {
      */
     @Generated
     @JsonCreator
-    public CreateUrlAttachmentRequest(@JsonProperty(value = "contents") TodoUrlAttachment contents) {
+    public CreateUrlAttachmentRequest(@JsonProperty(value = "contents") BinaryData contents) {
         this.contents = contents;
     }
 
@@ -37,7 +37,7 @@ public final class CreateUrlAttachmentRequest {
      * @return the contents value.
      */
     @Generated
-    public TodoUrlAttachment getContents() {
+    public BinaryData getContents() {
         return this.contents;
     }
 }

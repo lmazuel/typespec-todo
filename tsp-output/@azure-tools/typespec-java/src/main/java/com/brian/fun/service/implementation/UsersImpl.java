@@ -65,7 +65,7 @@ public final class UsersImpl {
             @BodyParam("application/json") BinaryData request, RequestOptions requestOptions, Context context);
 
         @Get("/validate")
-        @ExpectedResponses({ 200 })
+        @ExpectedResponses({ 204 })
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
         @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
@@ -74,7 +74,7 @@ public final class UsersImpl {
             @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
 
         @Post("/login")
-        @ExpectedResponses({ 200, 401 })
+        @ExpectedResponses({ 204, 401 })
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
@@ -91,7 +91,7 @@ public final class UsersImpl {
             RequestOptions requestOptions, Context context);
 
         @Post("/forgot-password")
-        @ExpectedResponses({ 200, 404 })
+        @ExpectedResponses({ 204, 404 })
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
@@ -99,7 +99,7 @@ public final class UsersImpl {
             @BodyParam("application/json") BinaryData request, RequestOptions requestOptions, Context context);
 
         @Get("/reset-password")
-        @ExpectedResponses({ 200, 404 })
+        @ExpectedResponses({ 204, 404 })
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)

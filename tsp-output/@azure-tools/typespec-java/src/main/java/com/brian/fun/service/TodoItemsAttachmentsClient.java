@@ -8,7 +8,6 @@ import com.brian.fun.service.implementation.TodoItemsAttachmentsImpl;
 import com.brian.fun.service.implementation.models.CreateFileAttachmentRequest;
 import com.brian.fun.service.implementation.models.CreateUrlAttachmentRequest;
 import com.brian.fun.service.models.ContentsFileDetails;
-import com.brian.fun.service.models.TodoUrlAttachment;
 import com.generic.core.annotation.Generated;
 import com.generic.core.annotation.ReturnType;
 import com.generic.core.annotation.ServiceClient;
@@ -71,10 +70,7 @@ public final class TodoItemsAttachmentsClient {
      * </p>
      * <pre>{@code
      * {
-     *     contents (Required): {
-     *         description: String (Required)
-     *         url: String (Required)
-     *     }
+     *     contents: BinaryData (Required)
      * }
      * }</pre>
      * 
@@ -148,7 +144,7 @@ public final class TodoItemsAttachmentsClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void createUrlAttachment(long itemId, TodoUrlAttachment contents) {
+    public void createUrlAttachment(long itemId, BinaryData contents) {
         // Generated convenience method for createUrlAttachmentWithResponse
         RequestOptions requestOptions = new RequestOptions();
         CreateUrlAttachmentRequest requestObj = new CreateUrlAttachmentRequest(contents);

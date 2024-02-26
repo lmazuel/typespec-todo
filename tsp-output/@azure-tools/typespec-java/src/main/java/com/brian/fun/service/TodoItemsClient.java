@@ -8,7 +8,6 @@ import com.brian.fun.service.implementation.models.CreateFormRequest;
 import com.brian.fun.service.implementation.models.CreateJsonRequest;
 import com.brian.fun.service.models.TodoItem;
 import com.brian.fun.service.models.TodoPage;
-import com.brian.fun.service.models.TodoUrlAttachment;
 import com.generic.core.annotation.Generated;
 import com.generic.core.annotation.ReturnType;
 import com.generic.core.annotation.ServiceClient;
@@ -52,8 +51,8 @@ public final class TodoItemsClient {
      *             id: long (Required)
      *             title: String (Required)
      *             createdBy: long (Required)
-     *             ownedBy: long (Required)
-     *             description: String (Required)
+     *             assignedTo: Long (Optional)
+     *             description: String (Optional)
      *             status: String(NotStarted/InProgress/Completed) (Required)
      *             createdAt: OffsetDateTime (Required)
      *             updatedAt: OffsetDateTime (Required)
@@ -98,8 +97,8 @@ public final class TodoItemsClient {
      *         id: long (Required)
      *         title: String (Required)
      *         createdBy: long (Required)
-     *         ownedBy: long (Required)
-     *         description: String (Required)
+     *         assignedTo: Long (Optional)
+     *         description: String (Optional)
      *         status: String(NotStarted/InProgress/Completed) (Required)
      *         createdAt: OffsetDateTime (Required)
      *         updatedAt: OffsetDateTime (Required)
@@ -109,10 +108,7 @@ public final class TodoItemsClient {
      *         ]
      *     }
      *     attachments (Required): [
-     *          (Required){
-     *             description: String (Required)
-     *             url: String (Required)
-     *         }
+     *         BinaryData (Required)
      *     ]
      * }
      * }</pre>
@@ -124,8 +120,8 @@ public final class TodoItemsClient {
      *     id: long (Required)
      *     title: String (Required)
      *     createdBy: long (Required)
-     *     ownedBy: long (Required)
-     *     description: String (Required)
+     *     assignedTo: Long (Optional)
+     *     description: String (Optional)
      *     status: String(NotStarted/InProgress/Completed) (Required)
      *     createdAt: OffsetDateTime (Required)
      *     updatedAt: OffsetDateTime (Required)
@@ -160,8 +156,8 @@ public final class TodoItemsClient {
      *     id: long (Required)
      *     title: String (Required)
      *     createdBy: long (Required)
-     *     ownedBy: long (Required)
-     *     description: String (Required)
+     *     assignedTo: Long (Optional)
+     *     description: String (Optional)
      *     status: String(NotStarted/InProgress/Completed) (Required)
      *     createdAt: OffsetDateTime (Required)
      *     updatedAt: OffsetDateTime (Required)
@@ -198,8 +194,8 @@ public final class TodoItemsClient {
      *     id: long (Required)
      *     title: String (Required)
      *     createdBy: long (Required)
-     *     ownedBy: long (Required)
-     *     description: String (Required)
+     *     assignedTo: Long (Optional)
+     *     description: String (Optional)
      *     status: String(NotStarted/InProgress/Completed) (Required)
      *     createdAt: OffsetDateTime (Required)
      *     updatedAt: OffsetDateTime (Required)
@@ -233,7 +229,7 @@ public final class TodoItemsClient {
      * {
      *     patch (Required): {
      *         title: String (Optional)
-     *         ownedBy: Long (Optional)
+     *         assignedTo: Long (Optional)
      *         description: String (Optional)
      *         status: String(NotStarted/InProgress/Completed) (Optional)
      *     }
@@ -247,8 +243,8 @@ public final class TodoItemsClient {
      *     id: long (Required)
      *     title: String (Required)
      *     createdBy: long (Required)
-     *     ownedBy: long (Required)
-     *     description: String (Required)
+     *     assignedTo: Long (Optional)
+     *     description: String (Optional)
      *     status: String(NotStarted/InProgress/Completed) (Required)
      *     createdAt: OffsetDateTime (Required)
      *     updatedAt: OffsetDateTime (Required)
@@ -330,7 +326,7 @@ public final class TodoItemsClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public TodoItem createJson(TodoItem item, List<TodoUrlAttachment> attachments) {
+    public TodoItem createJson(TodoItem item, List<BinaryData> attachments) {
         // Generated convenience method for createJsonWithResponse
         RequestOptions requestOptions = new RequestOptions();
         CreateJsonRequest requestObj = new CreateJsonRequest(item, attachments);

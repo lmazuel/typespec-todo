@@ -64,7 +64,7 @@ public final class TodoItemsAttachmentsImpl {
             @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
 
         @Post("/items/{itemId}/attachments")
-        @ExpectedResponses({ 200, 404 })
+        @ExpectedResponses({ 204, 404 })
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
@@ -75,7 +75,7 @@ public final class TodoItemsAttachmentsImpl {
 
         // @Multipart not supported by RestProxy
         @Post("/items/{itemId}/attachments")
-        @ExpectedResponses({ 200, 404 })
+        @ExpectedResponses({ 204, 404 })
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
@@ -117,10 +117,7 @@ public final class TodoItemsAttachmentsImpl {
      * </p>
      * <pre>{@code
      * {
-     *     contents (Required): {
-     *         description: String (Required)
-     *         url: String (Required)
-     *     }
+     *     contents: BinaryData (Required)
      * }
      * }</pre>
      * 

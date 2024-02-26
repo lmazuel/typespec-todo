@@ -1,6 +1,6 @@
 emit:
   #- "@typespec/openapi3"
-  #- "@azure-tools/typespec-python"
+  - "@azure-tools/typespec-python"
   - "@azure-tools/typespec-java"
   #- "@azure-tools/typespec-ts"
 options:
