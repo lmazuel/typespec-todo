@@ -1,6 +1,7 @@
 import "@typespec/http";
 import "@typespec/rest";
 import "@typespec/openapi3";
+import "@typespec/openapi";
 
 using Http;
 
@@ -44,10 +45,10 @@ model TodoItem {
   @visibility("read") createdBy: User.id;
 
   /** User that the todo is assigned to */
-  ownedBy: User.id;
+  assignedTo?: User.id;
 
   /** A longer description of the todo item in markdown format */
-  description: string;
+  description?: string;
 
   /** The status of the todo item */
   status: "NotStarted" | "InProgress" | "Completed";
@@ -95,7 +96,7 @@ model TodoUrlAttachment {
 
 model TodoFileAttachment {
   /** The todo item this is attached to */
-  todoItemId: TodoItem.id;
+  @visibility("read") todoItemId: TodoItem.id;
 
   /** The file name of the attachment */
   @maxLength(255)
@@ -105,17 +106,44 @@ model TodoFileAttachment {
   mediaType: string;
 
   /** The url where the attachment can be downloaded from */
-  url: url;
+  @visibility("read") url: url;
+
+  /** The contents of the file */
+  @visibility("create") contents: bytes;
 }
 
 @error
-model Error {
+model ApiError {
   /** A machine readable error code */
   code: string;
 
   /** A human readable message */
+  // https://github.com/microsoft/OpenAPI/blob/main/extensions/x-ms-primary-error-message.md
+  @OpenAPI.extension("x-ms-primary-error-message", true)
   message: string;
 }
+
+/**
+ * Something is wrong with you.
+ */
+model Standard4XXResponse extends ApiError {
+  @minValue(400)
+  @maxValue(499)
+  @statusCode
+  statusCode: int32;
+}
+
+/**
+ * Something is wrong with me.
+ */
+model Standard5XXResponse extends ApiError {
+  @minValue(500)
+  @maxValue(599)
+  @statusCode
+  statusCode: int32;
+}
+
+alias WithStandardErrors<T> = T | Standard4XXResponse | Standard5XXResponse;
 
 namespace Users {
   // would prefer to extend
@@ -130,12 +158,12 @@ namespace Users {
   }
 
   /** The user already exists */
-  model UserExistsResponse extends Error {
+  model UserExistsResponse extends ApiError {
     ...ConflictResponse;
   }
 
   /** The user is invalid (e.g. forgot to enter email address) */
-  model InvalidUserResponse extends Error {
+  model InvalidUserResponse extends ApiError {
     @statusCode statusCode: 422;
   }
 
@@ -143,18 +171,20 @@ namespace Users {
   @post
   op create(
     user: User,
-  ): UserCreatedResponse | UserExistsResponse | InvalidUserResponse;
+  ): WithStandardErrors<UserCreatedResponse | UserExistsResponse | InvalidUserResponse>;
 
   @route("validate")
   @get
-  op validate(@query token: string): OkResponse | InvalidUserResponse;
+  op validate(
+    @query token: string,
+  ): WithStandardErrors<NoContentResponse | InvalidUserResponse>;
 
   @route("login")
   @post
   op login(
     username: User.username,
     password: User.password,
-  ): OkResponse | UnauthorizedResponse;
+  ): WithStandardErrors<NoContentResponse | UnauthorizedResponse>;
 
   @route("logout")
   @get
@@ -163,11 +193,15 @@ namespace Users {
   /** Sends a reset token to the user's email address */
   @route("forgot-password")
   @post
-  op forgotPassword(email: User.email): OkResponse | NotFoundResponse;
+  op forgotPassword(
+    email: User.email,
+  ): WithStandardErrors<NoContentResponse | NotFoundResponse>;
 
   @route("reset-password")
   @get
-  op resetPassword(@query resetToken: string): OkResponse | NotFoundResponse;
+  op resetPassword(
+    @query resetToken: string,
+  ): WithStandardErrors<NoContentResponse | NotFoundResponse>;
 }
 
 @route("items")
@@ -207,28 +241,28 @@ namespace TodoItems {
     title?: TodoItem.title;
 
     /** User that the todo is assigned to */
-    ownedBy?: TodoItem.ownedBy;
+    assignedTo?: TodoItem.assignedTo | null;
 
     /** A longer description of the todo item in markdown format */
-    description?: TodoItem.description;
+    description?: TodoItem.description | null;
 
     /** The status of the todo item */
     status?: "NotStarted" | "InProgress" | "Completed";
   }
 
-  model InvalidTodoItem extends Error {
+  model InvalidTodoItem extends ApiError {
     @statusCode statusCode: 422;
   }
 
-  @list op list(...PaginationControls): TodoPage;
+  @list op list(...PaginationControls): WithStandardErrors<TodoPage>;
 
   @sharedRoute
   @post
   op createJson(
     @header contentType: "application/json",
     item: TodoItem,
-    attachments: TodoUrlAttachment[],
-  ): TodoItem | InvalidTodoItem;
+    attachments: TodoAttachment[],
+  ): WithStandardErrors<TodoItem | InvalidTodoItem>;
 
   @sharedRoute
   @post
@@ -236,7 +270,7 @@ namespace TodoItems {
     @header contentType: "multipart/form-data",
     item: TodoItem,
     attachments?: (TodoUrlAttachment | bytes)[],
-  ): TodoItem | InvalidTodoItem;
+  ): WithStandardErrors<TodoItem | InvalidTodoItem>;
 
   @get op get(@path id: TodoItem.id): TodoItem | NotFoundResponse;
   @patch op update(
@@ -244,21 +278,23 @@ namespace TodoItems {
     @path id: TodoItem.id,
     patch: TodoItemPatch,
   ): TodoItem;
-  @delete op delete(@path id: TodoItem.id): OkResponse | NotFoundResponse;
+  @delete op delete(
+    @path id: TodoItem.id,
+  ): WithStandardErrors<NoContentResponse | NotFoundResponse>;
 
   @route("{itemId}/attachments")
   namespace Attachments {
     @list op list(
       @path itemId: TodoItem.id,
-    ): TodoAttachment[] | NotFoundResponse;
+    ): WithStandardErrors<TodoAttachment[] | NotFoundResponse>;
 
     @sharedRoute
     @post
     op createUrlAttachment(
       @header contentType: "application/json",
       @path itemId: TodoItem.id,
-      contents: TodoUrlAttachment,
-    ): OkResponse | NotFoundResponse;
+      contents: TodoAttachment,
+    ): WithStandardErrors<NoContentResponse | NotFoundResponse>;
 
     @sharedRoute
     @post
@@ -266,7 +302,7 @@ namespace TodoItems {
       @header contentType: "multipart/form-data",
       @path itemId: TodoItem.id,
       contents: bytes,
-    ): OkResponse | NotFoundResponse;
+    ): WithStandardErrors<NoContentResponse | NotFoundResponse>;
 
     // disabled: https://github.com/microsoft/typespec/issues/2925
     // @delete op delete(@path itemId: TodoItem.id): OkResponse | NotFoundResponse;

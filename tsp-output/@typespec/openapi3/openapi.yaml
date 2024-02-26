@@ -10,10 +10,22 @@ paths:
       description: Sends a reset token to the user's email address
       parameters: []
       responses:
-        '200':
-          description: The request has succeeded.
+        '204':
+          description: There is no content to send for this request, but the headers may be useful.
         '404':
           description: The server cannot find the requested resource.
+        4XX:
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Standard4XXResponse'
+        5XX:
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Standard5XXResponse'
       requestBody:
         required: true
         content:
@@ -40,6 +52,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TodoItems.TodoPage'
+        4XX:
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Standard4XXResponse'
+        5XX:
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Standard5XXResponse'
     post:
       operationId: TodoItems_createJson_TodoItems_createForm
       parameters: []
@@ -56,6 +80,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TodoItems.InvalidTodoItem'
+        4XX:
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Standard4XXResponse'
+        5XX:
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Standard5XXResponse'
       requestBody:
         content:
           application/json:
@@ -67,7 +103,7 @@ paths:
                 attachments:
                   type: array
                   items:
-                    $ref: '#/components/schemas/TodoUrlAttachment'
+                    $ref: '#/components/schemas/TodoAttachmentCreateItem'
               required:
                 - item
                 - attachments
@@ -140,10 +176,22 @@ paths:
             type: integer
             format: int64
       responses:
-        '200':
-          description: The request has succeeded.
+        '204':
+          description: There is no content to send for this request, but the headers may be useful.
         '404':
           description: The server cannot find the requested resource.
+        4XX:
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Standard4XXResponse'
+        5XX:
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Standard5XXResponse'
   /items/{itemId}/attachments:
     get:
       operationId: Attachments_list
@@ -165,6 +213,18 @@ paths:
                   $ref: '#/components/schemas/TodoAttachment'
         '404':
           description: The server cannot find the requested resource.
+        4XX:
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Standard4XXResponse'
+        5XX:
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Standard5XXResponse'
     post:
       operationId: Attachments_createUrlAttachment_Attachments_createFileAttachment
       parameters:
@@ -175,10 +235,22 @@ paths:
             type: integer
             format: int64
       responses:
-        '200':
-          description: The request has succeeded.
+        '204':
+          description: There is no content to send for this request, but the headers may be useful.
         '404':
           description: The server cannot find the requested resource.
+        4XX:
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Standard4XXResponse'
+        5XX:
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Standard5XXResponse'
       requestBody:
         content:
           application/json:
@@ -186,7 +258,7 @@ paths:
               type: object
               properties:
                 contents:
-                  $ref: '#/components/schemas/TodoUrlAttachment'
+                  $ref: '#/components/schemas/TodoAttachmentCreate'
               required:
                 - contents
           multipart/form-data:
@@ -203,10 +275,22 @@ paths:
       operationId: Users_login
       parameters: []
       responses:
-        '200':
-          description: The request has succeeded.
+        '204':
+          description: There is no content to send for this request, but the headers may be useful.
         '401':
           description: Access is unauthorized.
+        4XX:
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Standard4XXResponse'
+        5XX:
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Standard5XXResponse'
       requestBody:
         required: true
         content:
@@ -243,10 +327,22 @@ paths:
           schema:
             type: string
       responses:
-        '200':
-          description: The request has succeeded.
+        '204':
+          description: There is no content to send for this request, but the headers may be useful.
         '404':
           description: The server cannot find the requested resource.
+        4XX:
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Standard4XXResponse'
+        5XX:
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Standard5XXResponse'
   /users:
     post:
       operationId: Users_create
@@ -270,6 +366,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Users.InvalidUserResponse'
+        4XX:
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Standard4XXResponse'
+        5XX:
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Standard5XXResponse'
       requestBody:
         required: true
         content:
@@ -291,14 +399,26 @@ paths:
           schema:
             type: string
       responses:
-        '200':
-          description: The request has succeeded.
+        '204':
+          description: There is no content to send for this request, but the headers may be useful.
         '422':
           description: Client error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Users.InvalidUserResponse'
+        4XX:
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Standard4XXResponse'
+        5XX:
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Standard5XXResponse'
 security:
   - BearerAuth: []
 components:
@@ -322,7 +442,7 @@ components:
         format: int32
         default: 0
   schemas:
-    Error:
+    ApiError:
       type: object
       required:
         - code
@@ -334,9 +454,28 @@ components:
         message:
           type: string
           description: A human readable message
+          x-ms-primary-error-message: true
+    Standard4XXResponse:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/ApiError'
+      description: Something is wrong with you.
+    Standard5XXResponse:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/ApiError'
+      description: Something is wrong with me.
     TodoAttachment:
       anyOf:
         - $ref: '#/components/schemas/TodoFileAttachment'
+        - $ref: '#/components/schemas/TodoUrlAttachment'
+    TodoAttachmentCreate:
+      anyOf:
+        - $ref: '#/components/schemas/TodoFileAttachmentCreate'
+        - $ref: '#/components/schemas/TodoUrlAttachment'
+    TodoAttachmentCreateItem:
+      anyOf:
+        - $ref: '#/components/schemas/TodoFileAttachmentCreateItem'
         - $ref: '#/components/schemas/TodoUrlAttachment'
     TodoFileAttachment:
       type: object
@@ -350,6 +489,7 @@ components:
           type: integer
           format: int64
           description: The todo item this is attached to
+          readOnly: true
         filename:
           type: string
           maxLength: 255
@@ -361,14 +501,49 @@ components:
           type: string
           format: uri
           description: The url where the attachment can be downloaded from
+          readOnly: true
+    TodoFileAttachmentCreate:
+      type: object
+      required:
+        - filename
+        - mediaType
+        - contents
+      properties:
+        filename:
+          type: string
+          maxLength: 255
+          description: The file name of the attachment
+        mediaType:
+          type: string
+          description: The media type of the attachment
+        contents:
+          type: string
+          format: byte
+          description: The contents of the file
+    TodoFileAttachmentCreateItem:
+      type: object
+      required:
+        - filename
+        - mediaType
+        - contents
+      properties:
+        filename:
+          type: string
+          maxLength: 255
+          description: The file name of the attachment
+        mediaType:
+          type: string
+          description: The media type of the attachment
+        contents:
+          type: string
+          format: byte
+          description: The contents of the file
     TodoItem:
       type: object
       required:
         - id
         - title
         - createdBy
-        - ownedBy
-        - description
         - status
         - createdAt
         - updatedAt
@@ -388,7 +563,7 @@ components:
           format: int64
           description: User that created the todo
           readOnly: true
-        ownedBy:
+        assignedTo:
           type: integer
           format: int64
           description: User that the todo is assigned to
@@ -425,7 +600,7 @@ components:
     TodoItems.InvalidTodoItem:
       type: object
       allOf:
-        - $ref: '#/components/schemas/Error'
+        - $ref: '#/components/schemas/ApiError'
     TodoItems.TodoItemPatch:
       type: object
       properties:
@@ -433,14 +608,16 @@ components:
           type: string
           maxLength: 255
           description: The item's title
-        ownedBy:
+        assignedTo:
           type: integer
           format: int64
           description: User that the todo is assigned to
           readOnly: true
+          nullable: true
         description:
           type: string
           description: A longer description of the todo item in markdown format
+          nullable: true
         status:
           type: string
           enum:
@@ -549,7 +726,7 @@ components:
     Users.InvalidUserResponse:
       type: object
       allOf:
-        - $ref: '#/components/schemas/Error'
+        - $ref: '#/components/schemas/ApiError'
       description: The user is invalid (e.g. forgot to enter email address)
     Users.UserCreatedResponse:
       type: object
@@ -578,7 +755,7 @@ components:
     Users.UserExistsResponse:
       type: object
       allOf:
-        - $ref: '#/components/schemas/Error'
+        - $ref: '#/components/schemas/ApiError'
       description: The user already exists
   securitySchemes:
     BearerAuth:
