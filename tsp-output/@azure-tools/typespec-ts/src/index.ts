@@ -1,4 +1,3 @@
-// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
 import BrianFunService from "./brianFunService";
@@ -14,6 +13,6 @@ export {
   createFileFromStream,
   type CreateFileOptions,
   type CreateFileFromStreamOptions,
-} from "@azure/core-rest-pipeline";
+} from "@typespec/ts-http-runtime";
 
 export default BrianFunService;

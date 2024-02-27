@@ -1,7 +1,6 @@
-// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { RequestParameters } from "@azure-rest/core-client";
+import { RequestParameters } from "@typespec/ts-http-runtime";
 import { User, TodoItem, TodoAttachment, TodoItemPatch } from "./models";
 
 export interface UsersCreateBodyParam {

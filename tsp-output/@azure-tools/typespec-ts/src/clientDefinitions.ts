@@ -1,4 +1,3 @@
-// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
 import {
@@ -72,7 +71,7 @@ import {
   TodoItemsAttachmentsCreateFileAttachment404Response,
   TodoItemsAttachmentsCreateFileAttachment500Response,
 } from "./responses";
-import { Client, StreamableMethod } from "@azure-rest/core-client";
+import { Client, StreamableMethod } from "@typespec/ts-http-runtime";
 
 export interface UsersCreate {
   post(

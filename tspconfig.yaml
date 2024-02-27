@@ -17,7 +17,7 @@ options:
     title: "Brian Fun Service"
     package-dir: "brian-fun-service"
     generateMetadata: true
-    unbranded: true
+    branded: false
     packageDetails:
       name: "@azure-rest/brian-fun-service"
       description: "Brian Fun Service"
