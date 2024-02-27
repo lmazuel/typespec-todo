@@ -2,7 +2,7 @@ emit:
   #- "@typespec/openapi3"
   - "@azure-tools/typespec-python"
   - "@azure-tools/typespec-java"
-  #- "@azure-tools/typespec-ts"
+  - "@azure-tools/typespec-ts"
 options:
   "@azure-tools/typespec-python":
     package-pprint-name: "Brian Fun Service"

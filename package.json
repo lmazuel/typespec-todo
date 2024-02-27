@@ -9,7 +9,7 @@
     "@typespec/openapi3": "latest",
     "@azure-tools/typespec-python": "0.21.0",
     "@azure-tools/typespec-java": "0.13.5",
-    "@azure-tools/typespec-ts": "0.22.0"
+    "@azure-tools/typespec-ts": "0.23.0"
   },
   "private": true
 }
