@@ -269,34 +269,7 @@ namespace Todo
             }
         }
 
-        /// <param name="itemId"> The <see cref="long"/> to use. </param>
-        /// <param name="contents"></param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="contents"/> is null. </exception>
-        public virtual async Task<Result> CreateFileAttachmentAsync(long itemId, BinaryData contents, CancellationToken cancellationToken = default)
-        {
-            Argument.AssertNotNull(contents, nameof(contents));
-
-            RequestOptions context = FromCancellationToken(cancellationToken);
-            CreateFileAttachmentRequest createFileAttachmentRequest = new CreateFileAttachmentRequest(contents);
-            Result result = await CreateFileAttachmentAsync(itemId, createFileAttachmentRequest.ToRequestBody(), context).ConfigureAwait(false);
-            return result;
-        }
-
-        /// <param name="itemId"> The <see cref="long"/> to use. </param>
-        /// <param name="contents"></param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="contents"/> is null. </exception>
-        public virtual Result CreateFileAttachment(long itemId, BinaryData contents, CancellationToken cancellationToken = default)
-        {
-            Argument.AssertNotNull(contents, nameof(contents));
-
-            RequestOptions context = FromCancellationToken(cancellationToken);
-            CreateFileAttachmentRequest createFileAttachmentRequest = new CreateFileAttachmentRequest(contents);
-            Result result = CreateFileAttachment(itemId, createFileAttachmentRequest.ToRequestBody(), context);
-            return result;
-        }
-
+        // The convenience method is omitted here because it has exactly the same parameter list as the corresponding protocol method
         /// <summary>
         /// [Protocol Method]
         /// <list type="bullet">
@@ -305,28 +278,19 @@ namespace Todo
         /// This <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/ProtocolMethods.md">protocol method</see> allows explicit creation of the request and processing of the response for advanced scenarios.
         /// </description>
         /// </item>
-        /// <item>
-        /// <description>
-        /// Please try the simpler <see cref="CreateFileAttachmentAsync(long,BinaryData,CancellationToken)"/> convenience overload with strongly typed models first.
-        /// </description>
-        /// </item>
         /// </list>
         /// </summary>
         /// <param name="itemId"> The <see cref="long"/> to use. </param>
-        /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         /// <exception cref="MessageFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. </returns>
-        public virtual async Task<Result> CreateFileAttachmentAsync(long itemId, RequestBody content, RequestOptions context = null)
+        public virtual async Task<Result> DeleteAsync(long itemId, RequestOptions context = null)
         {
-            Argument.AssertNotNull(content, nameof(content));
-
-            using var scope = ClientDiagnostics.CreateSpan("TodoItemsAttachments.CreateFileAttachment");
+            using var scope = ClientDiagnostics.CreateSpan("TodoItemsAttachments.Delete");
             scope.Start();
             try
             {
-                using PipelineMessage message = CreateCreateFileAttachmentRequest(itemId, content, context);
+                using PipelineMessage message = CreateDeleteRequest(itemId, context);
                 return Result.FromResponse(await _pipeline.ProcessMessageAsync(message, context).ConfigureAwait(false));
             }
             catch (Exception e)
@@ -336,6 +300,7 @@ namespace Todo
             }
         }
 
+        // The convenience method is omitted here because it has exactly the same parameter list as the corresponding protocol method
         /// <summary>
         /// [Protocol Method]
         /// <list type="bullet">
@@ -344,28 +309,19 @@ namespace Todo
         /// This <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/ProtocolMethods.md">protocol method</see> allows explicit creation of the request and processing of the response for advanced scenarios.
         /// </description>
         /// </item>
-        /// <item>
-        /// <description>
-        /// Please try the simpler <see cref="CreateFileAttachment(long,BinaryData,CancellationToken)"/> convenience overload with strongly typed models first.
-        /// </description>
-        /// </item>
         /// </list>
         /// </summary>
         /// <param name="itemId"> The <see cref="long"/> to use. </param>
-        /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         /// <exception cref="MessageFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. </returns>
-        public virtual Result CreateFileAttachment(long itemId, RequestBody content, RequestOptions context = null)
+        public virtual Result Delete(long itemId, RequestOptions context = null)
         {
-            Argument.AssertNotNull(content, nameof(content));
-
-            using var scope = ClientDiagnostics.CreateSpan("TodoItemsAttachments.CreateFileAttachment");
+            using var scope = ClientDiagnostics.CreateSpan("TodoItemsAttachments.Delete");
             scope.Start();
             try
             {
-                using PipelineMessage message = CreateCreateFileAttachmentRequest(itemId, content, context);
+                using PipelineMessage message = CreateDeleteRequest(itemId, context);
                 return Result.FromResponse(_pipeline.ProcessMessage(message, context));
             }
             catch (Exception e)
@@ -405,19 +361,17 @@ namespace Todo
             return message;
         }
 
-        internal PipelineMessage CreateCreateFileAttachmentRequest(long itemId, RequestBody content, RequestOptions context)
+        internal PipelineMessage CreateDeleteRequest(long itemId, RequestOptions context)
         {
-            var message = _pipeline.CreateMessage(context, ResponseErrorClassifier204404);
+            var message = _pipeline.CreateMessage(context, ResponseErrorClassifier200404);
             var request = message.Request;
-            request.SetMethod("POST");
+            request.SetMethod("DELETE");
             var uri = new RequestUri();
             uri.AppendPath("/items/", false);
             uri.AppendPath(itemId.ToString(), true);
             uri.AppendPath("/attachments", false);
             request.Uri = uri.ToUri();
             request.SetHeaderValue("Accept", "application/json");
-            request.SetHeaderValue("content-type", "multipart/form-data");
-            request.Content = content;
             return message;
         }
 

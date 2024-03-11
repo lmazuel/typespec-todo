@@ -140,21 +140,21 @@ namespace Todo
         /// <param name="attachments"></param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="item"/> is null. </exception>
-        public virtual async Task<Result<TodoItem>> CreateJsonAsync(TodoItem item, IEnumerable<BinaryData> attachments = null, CancellationToken cancellationToken = default)
+        public virtual async Task<Result<TodoItem>> CreateAsync(TodoItem item, IEnumerable<BinaryData> attachments = null, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNull(item, nameof(item));
 
             RequestOptions context = FromCancellationToken(cancellationToken);
-            CreateJsonRequest createJsonRequest = new CreateJsonRequest(item);
+            CreateRequest createRequest = new CreateRequest(item);
             if (attachments != null)
             {
                 foreach (var value in attachments)
                 {
-                    createJsonRequest.Attachments.Add(value);
+                    createRequest.Attachments.Add(value);
                 }
             }
-            CreateJsonRequest createJsonRequest0 = createJsonRequest;
-            Result result = await CreateJsonAsync(createJsonRequest0.ToRequestBody(), context).ConfigureAwait(false);
+            CreateRequest createRequest0 = createRequest;
+            Result result = await CreateAsync(createRequest0.ToRequestBody(), context).ConfigureAwait(false);
             return Result.FromValue(TodoItem.FromResponse(result.GetRawResponse()), result.GetRawResponse());
         }
 
@@ -162,21 +162,21 @@ namespace Todo
         /// <param name="attachments"></param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="item"/> is null. </exception>
-        public virtual Result<TodoItem> CreateJson(TodoItem item, IEnumerable<BinaryData> attachments = null, CancellationToken cancellationToken = default)
+        public virtual Result<TodoItem> Create(TodoItem item, IEnumerable<BinaryData> attachments = null, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNull(item, nameof(item));
 
             RequestOptions context = FromCancellationToken(cancellationToken);
-            CreateJsonRequest createJsonRequest = new CreateJsonRequest(item);
+            CreateRequest createRequest = new CreateRequest(item);
             if (attachments != null)
             {
                 foreach (var value in attachments)
                 {
-                    createJsonRequest.Attachments.Add(value);
+                    createRequest.Attachments.Add(value);
                 }
             }
-            CreateJsonRequest createJsonRequest0 = createJsonRequest;
-            Result result = CreateJson(createJsonRequest0.ToRequestBody(), context);
+            CreateRequest createRequest0 = createRequest;
+            Result result = Create(createRequest0.ToRequestBody(), context);
             return Result.FromValue(TodoItem.FromResponse(result.GetRawResponse()), result.GetRawResponse());
         }
 
@@ -190,7 +190,7 @@ namespace Todo
         /// </item>
         /// <item>
         /// <description>
-        /// Please try the simpler <see cref="CreateJsonAsync(TodoItem,IEnumerable{BinaryData},CancellationToken)"/> convenience overload with strongly typed models first.
+        /// Please try the simpler <see cref="CreateAsync(TodoItem,IEnumerable{BinaryData},CancellationToken)"/> convenience overload with strongly typed models first.
         /// </description>
         /// </item>
         /// </list>
@@ -200,15 +200,15 @@ namespace Todo
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         /// <exception cref="MessageFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. </returns>
-        public virtual async Task<Result> CreateJsonAsync(RequestBody content, RequestOptions context = null)
+        public virtual async Task<Result> CreateAsync(RequestBody content, RequestOptions context = null)
         {
             Argument.AssertNotNull(content, nameof(content));
 
-            using var scope = ClientDiagnostics.CreateSpan("TodoItems.CreateJson");
+            using var scope = ClientDiagnostics.CreateSpan("TodoItems.Create");
             scope.Start();
             try
             {
-                using PipelineMessage message = CreateCreateJsonRequest(content, context);
+                using PipelineMessage message = CreateCreateRequest(content, context);
                 return Result.FromResponse(await _pipeline.ProcessMessageAsync(message, context).ConfigureAwait(false));
             }
             catch (Exception e)
@@ -228,7 +228,7 @@ namespace Todo
         /// </item>
         /// <item>
         /// <description>
-        /// Please try the simpler <see cref="CreateJson(TodoItem,IEnumerable{BinaryData},CancellationToken)"/> convenience overload with strongly typed models first.
+        /// Please try the simpler <see cref="Create(TodoItem,IEnumerable{BinaryData},CancellationToken)"/> convenience overload with strongly typed models first.
         /// </description>
         /// </item>
         /// </list>
@@ -238,177 +238,15 @@ namespace Todo
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         /// <exception cref="MessageFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. </returns>
-        public virtual Result CreateJson(RequestBody content, RequestOptions context = null)
+        public virtual Result Create(RequestBody content, RequestOptions context = null)
         {
             Argument.AssertNotNull(content, nameof(content));
 
-            using var scope = ClientDiagnostics.CreateSpan("TodoItems.CreateJson");
+            using var scope = ClientDiagnostics.CreateSpan("TodoItems.Create");
             scope.Start();
             try
             {
-                using PipelineMessage message = CreateCreateJsonRequest(content, context);
-                return Result.FromResponse(_pipeline.ProcessMessage(message, context));
-            }
-            catch (Exception e)
-            {
-                scope.Failed(e);
-                throw;
-            }
-        }
-
-        /// <param name="title"> The item's title. </param>
-        /// <param name="status"> The status of the todo item. </param>
-        /// <param name="id"> The item's unique id. </param>
-        /// <param name="createdBy"> User that created the todo. </param>
-        /// <param name="createdAt"> When the todo item was created. </param>
-        /// <param name="updatedAt"> When the todo item was last updated. </param>
-        /// <param name="assignedTo"> User that the todo is assigned to. </param>
-        /// <param name="description"> A longer description of the todo item in markdown format. </param>
-        /// <param name="completedAt"> When the todo item was makred as completed. </param>
-        /// <param name="labels"></param>
-        /// <param name="dummy"></param>
-        /// <param name="attachments"></param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="title"/> is null. </exception>
-        public virtual async Task<Result<TodoItem>> CreateFormAsync(string title, CreateFormRequestStatus status, long id, long createdBy, DateTimeOffset createdAt, DateTimeOffset updatedAt, long? assignedTo = null, string description = null, DateTimeOffset? completedAt = null, BinaryData labels = null, string dummy = null, IEnumerable<BinaryData> attachments = null, CancellationToken cancellationToken = default)
-        {
-            Argument.AssertNotNull(title, nameof(title));
-
-            RequestOptions context = FromCancellationToken(cancellationToken);
-            CreateFormRequest createFormRequest = new CreateFormRequest(title, status)
-            {
-                Id = id,
-                CreatedBy = createdBy,
-                CreatedAt = createdAt,
-                UpdatedAt = updatedAt,
-                AssignedTo = assignedTo,
-                Description = description,
-                CompletedAt = completedAt,
-                Labels = labels,
-                Dummy = dummy
-            };
-            if (attachments != null)
-            {
-                foreach (var value in attachments)
-                {
-                    createFormRequest.Attachments.Add(value);
-                }
-            }
-            CreateFormRequest createFormRequest0 = createFormRequest;
-            Result result = await CreateFormAsync(createFormRequest0.ToRequestBody(), context).ConfigureAwait(false);
-            return Result.FromValue(TodoItem.FromResponse(result.GetRawResponse()), result.GetRawResponse());
-        }
-
-        /// <param name="title"> The item's title. </param>
-        /// <param name="status"> The status of the todo item. </param>
-        /// <param name="id"> The item's unique id. </param>
-        /// <param name="createdBy"> User that created the todo. </param>
-        /// <param name="createdAt"> When the todo item was created. </param>
-        /// <param name="updatedAt"> When the todo item was last updated. </param>
-        /// <param name="assignedTo"> User that the todo is assigned to. </param>
-        /// <param name="description"> A longer description of the todo item in markdown format. </param>
-        /// <param name="completedAt"> When the todo item was makred as completed. </param>
-        /// <param name="labels"></param>
-        /// <param name="dummy"></param>
-        /// <param name="attachments"></param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="title"/> is null. </exception>
-        public virtual Result<TodoItem> CreateForm(string title, CreateFormRequestStatus status, long id, long createdBy, DateTimeOffset createdAt, DateTimeOffset updatedAt, long? assignedTo = null, string description = null, DateTimeOffset? completedAt = null, BinaryData labels = null, string dummy = null, IEnumerable<BinaryData> attachments = null, CancellationToken cancellationToken = default)
-        {
-            Argument.AssertNotNull(title, nameof(title));
-
-            RequestOptions context = FromCancellationToken(cancellationToken);
-            CreateFormRequest createFormRequest = new CreateFormRequest(title, status)
-            {
-                Id = id,
-                CreatedBy = createdBy,
-                CreatedAt = createdAt,
-                UpdatedAt = updatedAt,
-                AssignedTo = assignedTo,
-                Description = description,
-                CompletedAt = completedAt,
-                Labels = labels,
-                Dummy = dummy
-            };
-            if (attachments != null)
-            {
-                foreach (var value in attachments)
-                {
-                    createFormRequest.Attachments.Add(value);
-                }
-            }
-            CreateFormRequest createFormRequest0 = createFormRequest;
-            Result result = CreateForm(createFormRequest0.ToRequestBody(), context);
-            return Result.FromValue(TodoItem.FromResponse(result.GetRawResponse()), result.GetRawResponse());
-        }
-
-        /// <summary>
-        /// [Protocol Method]
-        /// <list type="bullet">
-        /// <item>
-        /// <description>
-        /// This <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/ProtocolMethods.md">protocol method</see> allows explicit creation of the request and processing of the response for advanced scenarios.
-        /// </description>
-        /// </item>
-        /// <item>
-        /// <description>
-        /// Please try the simpler <see cref="CreateFormAsync(string,CreateFormRequestStatus,long,long,DateTimeOffset,DateTimeOffset,long?,string,DateTimeOffset?,BinaryData,string,IEnumerable{BinaryData},CancellationToken)"/> convenience overload with strongly typed models first.
-        /// </description>
-        /// </item>
-        /// </list>
-        /// </summary>
-        /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
-        /// <exception cref="MessageFailedException"> Service returned a non-success status code. </exception>
-        /// <returns> The response returned from the service. </returns>
-        public virtual async Task<Result> CreateFormAsync(RequestBody content, RequestOptions context = null)
-        {
-            Argument.AssertNotNull(content, nameof(content));
-
-            using var scope = ClientDiagnostics.CreateSpan("TodoItems.CreateForm");
-            scope.Start();
-            try
-            {
-                using PipelineMessage message = CreateCreateFormRequest(content, context);
-                return Result.FromResponse(await _pipeline.ProcessMessageAsync(message, context).ConfigureAwait(false));
-            }
-            catch (Exception e)
-            {
-                scope.Failed(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// [Protocol Method]
-        /// <list type="bullet">
-        /// <item>
-        /// <description>
-        /// This <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/ProtocolMethods.md">protocol method</see> allows explicit creation of the request and processing of the response for advanced scenarios.
-        /// </description>
-        /// </item>
-        /// <item>
-        /// <description>
-        /// Please try the simpler <see cref="CreateForm(string,CreateFormRequestStatus,long,long,DateTimeOffset,DateTimeOffset,long?,string,DateTimeOffset?,BinaryData,string,IEnumerable{BinaryData},CancellationToken)"/> convenience overload with strongly typed models first.
-        /// </description>
-        /// </item>
-        /// </list>
-        /// </summary>
-        /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
-        /// <exception cref="MessageFailedException"> Service returned a non-success status code. </exception>
-        /// <returns> The response returned from the service. </returns>
-        public virtual Result CreateForm(RequestBody content, RequestOptions context = null)
-        {
-            Argument.AssertNotNull(content, nameof(content));
-
-            using var scope = ClientDiagnostics.CreateSpan("TodoItems.CreateForm");
-            scope.Start();
-            try
-            {
-                using PipelineMessage message = CreateCreateFormRequest(content, context);
+                using PipelineMessage message = CreateCreateRequest(content, context);
                 return Result.FromResponse(_pipeline.ProcessMessage(message, context));
             }
             catch (Exception e)
@@ -664,7 +502,7 @@ namespace Todo
             return message;
         }
 
-        internal PipelineMessage CreateCreateJsonRequest(RequestBody content, RequestOptions context)
+        internal PipelineMessage CreateCreateRequest(RequestBody content, RequestOptions context)
         {
             var message = _pipeline.CreateMessage(context, ResponseErrorClassifier200);
             var request = message.Request;
@@ -674,20 +512,6 @@ namespace Todo
             request.Uri = uri.ToUri();
             request.SetHeaderValue("Accept", "application/json");
             request.SetHeaderValue("content-type", "application/json");
-            request.Content = content;
-            return message;
-        }
-
-        internal PipelineMessage CreateCreateFormRequest(RequestBody content, RequestOptions context)
-        {
-            var message = _pipeline.CreateMessage(context, ResponseErrorClassifier200);
-            var request = message.Request;
-            request.SetMethod("POST");
-            var uri = new RequestUri();
-            uri.AppendPath("/items", false);
-            request.Uri = uri.ToUri();
-            request.SetHeaderValue("Accept", "application/json");
-            request.SetHeaderValue("content-type", "multipart/form-data");
             request.Content = content;
             return message;
         }
